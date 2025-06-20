@@ -5,7 +5,7 @@ const config = {
     votingFrequency: 'daily',
 
     backgroundImage: {
-        filename: "", 
+        filename: "pozadi.png", 
         recommended_width: "500px", recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
     },
