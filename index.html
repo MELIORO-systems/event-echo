@@ -4,37 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-config-key="pageTitle">Měřič nálady</title>
+    
     <link rel="stylesheet" href="style.css">
     
-    <!-- NOVÉ: Firebase knihovny -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <!-- Vaše skripty -->
     <script src="config.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Zbytek HTML zůstává stejný jako v předchozí verzi -->
     <div class="app-container">
         <h1 data-config-key="appTitle"></h1>
         <p data-config-key="appSubtitle"></p>
         <button id="open-modal-btn" data-config-key="buttonText"></button>
-        <div class="stats-section">
-            <h2 data-config-key="statsTitle"></h2>
-            <div class="stat-item"><span class="stat-label">Celkem hlasů:</span><span id="stats-total" class="stat-value">0</span></div>
-            <div class="stat-item"><span class="stat-label">Dnes:</span><span id="stats-today" class="stat-value">0</span></div>
-            <div class="stat-item"><span class="stat-label">Posledních 7 dní:</span><span id="stats-last-week" class="stat-value">0</span></div>
-            <div class="stat-item"><span class="stat-label">Nálady (celkem):</span><span id="stats-breakdown" class="stat-value" style="font-size: 0.8rem; background-color: transparent; color: var(--text-color); font-weight: 500;"></span></div>
+        
+        <!-- Viditelná sekce statistik projektu -->
+        <div class="project-stats-section">
+            <div class="stat-item"><span class="stat-label" data-config-key="statsProjectTotal"></span><span id="stats-project-total" class="stat-value">0</span></div>
+            <div class="stat-item"><span class="stat-label" data-config-key="statsProjectBreakdown"></span><span id="stats-project-breakdown" class="stat-value breakdown"></span></div>
         </div>
-        <div class="theme-switcher">
-            <button class="theme-btn" id="theme-default" data-theme="default" title="Výchozí"></button>
-            <button class="theme-btn" id="theme-dark" data-theme="dark" title="Tmavý"></button>
-            <button class="theme-btn" id="theme-forest" data-theme="forest" title="Lesní"></button>
-            <button class="theme-btn" id="theme-ocean" data-theme="ocean" title="Oceán"></button>
-            <button class="theme-btn" id="theme-sunset" data-theme="sunset" title="Západ slunce"></button>
+        
+        <button id="settings-toggle-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14,12.94a2,2,0,0,0-.14-1.86,2,2,0,0,0-1.28-1l-1.39-.4a.49.49,0,0,1-.33-.62l.6-1.52a2,2,0,0,0-.49-2.21l-1.09-1.09a2,2,0,0,0-2.21-.49l-1.52.6a.49.49,0,0,1-.62-.33l-.4-1.39a2,2,0,0,0-1-1.28,2,2,0,0,0-1.86-.14L4.86,2.86a2,2,0,0,0-1.86.14,2,2,0,0,0-1,1.28l-.4,1.39a.49.49,0,0,1-.62.33l-1.52-.6a2,2,0,0,0-2.21.49L1.3,7.61a2,2,0,0,0-.49,2.21l.6,1.52a.49.49,0,0,1,.33.62l-1.39.4a2,2,0,0,0-1.28,1,2,2,0,0,0-.14,1.86l.28,1.6a2,2,0,0,0,1.28,1.28,2,2,0,0,0,1.86.14l1.6-.28a.49.49,0,0,1,.62.33l.4,1.39a2,2,0,0,0,1,1.28,2,2,0,0,0,1.86.14l1.6-.28a.49.49,0,0,1,.62.33l.4,1.39a2,2,0,0,0,1,1.28,2,2,0,0,0,1.86.14l1.6-.28a.49.49,0,0,1,.62.33l.4,1.39a2,2,0,0,0,1,1.28,2,2,0,0,0,1.86.14L19.14,12.94ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/></svg>
+            <span data-config-key="settingsTitle">Nastavení</span>
+        </button>
+
+        <!-- Schovaná sekce s globálními statistikami a nastavením -->
+        <div class="collapsible-area">
+            <div class="global-stats-section">
+                <h2 class="stats-title" data-config-key="statsGlobalTitle"></h2>
+                <div class="stat-item"><span class="stat-label" data-config-key="statsGlobalTotal"></span><span id="stats-global-total" class="stat-value">0</span></div>
+                <div class="stat-item"><span class="stat-label" data-config-key="statsGlobalToday"></span><span id="stats-global-today" class="stat-value">0</span></div>
+                <div class="stat-item"><span class="stat-label" data-config-key="statsGlobalLastWeek"></span><span id="stats-global-last-week" class="stat-value">0</span></div>
+                <div class="stat-item"><span class="stat-label" data-config-key="statsGlobalBreakdown"></span><span id="stats-global-breakdown" class="stat-value breakdown"></span></div>
+            </div>
+            <div class="language-switcher">
+                <button data-lang="cs">CZ</button> <button data-lang="en">EN</button> <button data-lang="sk">SK</button> <button data-lang="de">DE</button>
+            </div>
+            <div class="theme-switcher">
+                 <button class="theme-btn" id="theme-default" data-theme="default" title="Výchozí"></button>
+                 <button class="theme-btn" id="theme-dark" data-theme="dark" title="Tmavý"></button>
+                 <button class="theme-btn" id="theme-forest" data-theme="forest" title="Lesní"></button>
+                 <button class="theme-btn" id="theme-ocean" data-theme="ocean" title="Oceán"></button>
+                 <button class="theme-btn" id="theme-sunset" data-theme="sunset" title="Západ slunce"></button>
+            </div>
         </div>
     </div>
+
     <div id="mood-modal" class="modal">
         <div class="modal-content">
             <button class="close-btn" id="close-modal-btn">&times;</button>
