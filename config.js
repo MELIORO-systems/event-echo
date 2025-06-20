@@ -1,11 +1,10 @@
 const config = {
     projectId: "default-project-id", 
-    votingFrequency: 'daily', // Možnosti: 'daily', 'hourly', 'once'
+    votingFrequency: 'daily',
 
     backgroundImage: {
-        filename: "pozadi.png", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
-        recommended_width: "500px",
-        recommended_height: "750px",
+        filename: "", 
+        recommended_width: "500px", recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
     },
 
@@ -23,7 +22,7 @@ const config = {
             statsProjectTotal: "Votes in this project:", statsProjectBreakdown: "Moods in this project:", 
             statsGlobalTitle: "Global Statistics (All Projects)", statsGlobalTotal: "Total votes (global):", 
             statsGlobalToday: "Today (global):", statsGlobalLastWeek: "Last 7 days (global):", statsGlobalBreakdown: "Moods (global):",
-            footerText: 'Made with <span class="heart-icon">❤️</span> by MELIORO Systems',
+            footerText: 'Made with <span class="heart-icon">❤️</span> by <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "GDPR Consent",
             gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊"
         },
@@ -40,7 +39,7 @@ const config = {
             statsProjectTotal: "Hlasů v tomto projektu:", statsProjectBreakdown: "Nálady v tomto projektu:", 
             statsGlobalTitle: "Globální statistiky (všechny projekty)", statsGlobalTotal: "Celkem hlasů (globálně):", 
             statsGlobalToday: "Dnes (globálně):", statsGlobalLastWeek: "Posledních 7 dní (globálně):", statsGlobalBreakdown: "Nálady (globálně):",
-            footerText: 'S <span class="heart-icon">❤️</span> vyrobilo MELIORO Systems',
+            footerText: 'S <span class="heart-icon">❤️</span> vyrobilo <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "Souhlas s GDPR",
             gdprAlertText: "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊"
         },
