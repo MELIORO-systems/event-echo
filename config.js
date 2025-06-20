@@ -1,12 +1,51 @@
 const config = {
-    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
     projectId: "default-project-id", 
+    votingFrequency: 'daily', // Možnosti: 'daily', 'hourly', 'once'
+
+    backgroundImage: {
+        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
+        recommended_width: "500px",
+        recommended_height: "750px",
+        recommended_format: "JPG, PNG, WEBP"
+    },
 
     translations: {
-        en: { pageTitle: "Mini-App: Mood Tracker", appTitle: "Mood Tracker", appSubtitle: "Help us track the community's current mood!", buttonText: "How are you feeling right now?", modalTitle: "How are you feeling right now?", settingsTitle: "Settings & Global Stats", thankYouMessage: "Thank you for your vote!", moods: ["Terrible", "Bad", "Neutral", "Good", "Great"], statsProjectTotal: "Votes in this project:", statsProjectBreakdown: "Moods in this project:", statsGlobalTitle: "Global Statistics (All Projects)", statsGlobalTotal: "Total votes (global):", statsGlobalToday: "Today (global):", statsGlobalLastWeek: "Last 7 days (global):", statsGlobalBreakdown: "Moods (global):" },
-        cs: { pageTitle: "Mini-aplikace: Měřič nálady", appTitle: "Měřič nálady", appSubtitle: "Pomozte nám sledovat aktuální náladu v komunitě!", buttonText: "Jak se teď cítíš?", modalTitle: "Jak se teď cítíš?", settingsTitle: "Nastavení & Globální statistiky", thankYouMessage: "Děkujeme za hlas!", moods: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"], statsProjectTotal: "Hlasů v tomto projektu:", statsProjectBreakdown: "Nálady v tomto projektu:", statsGlobalTitle: "Globální statistiky (všechny projekty)", statsGlobalTotal: "Celkem hlasů (globálně):", statsGlobalToday: "Dnes (globálně):", statsGlobalLastWeek: "Posledních 7 dní (globálně):", statsGlobalBreakdown: "Nálady (globálně):" },
-        sk: { pageTitle: "Mini-aplikácia: Merač nálady", appTitle: "Merač nálady", appSubtitle: "Pomôžte nám sledovať aktuálnu náladu v komunite!", buttonText: "Ako sa teraz cítiš?", modalTitle: "Ako sa teraz cítiš?", settingsTitle: "Nastavenia a Globálne štatistiky", thankYouMessage: "Ďakujeme za hlas!", moods: ["Hrozne", "Zle", "Neutrálne", "Dobre", "Skvele"], statsProjectTotal: "Hlasov v tomto projekte:", statsProjectBreakdown: "Nálady v tomto projekte:", statsGlobalTitle: "Globálne štatistiky (všetky projekty)", statsGlobalTotal: "Celkom hlasov (globálne):", statsGlobalToday: "Dnes (globálne):", statsGlobalLastWeek: "Posledných 7 dní (globálne):", statsGlobalBreakdown: "Nálady (globálne):" },
-        de: { pageTitle: "Mini-App: Stimmungs-Tracker", appTitle: "Stimmungs-Tracker", appSubtitle: "Helfen Sie uns, die aktuelle Stimmung in der Community zu verfolgen!", buttonText: "Wie fühlst du dich gerade?", modalTitle: "Wie fühlst du dich gerade?", settingsTitle: "Einstellungen & Globale Statistiken", thankYouMessage: "Danke für deine Stimme!", moods: ["Schrecklich", "Schlecht", "Neutral", "Gut", "Großartig"], statsProjectTotal: "Stimmen in diesem Projekt:", statsProjectBreakdown: "Stimmungen in diesem Projekt:", statsGlobalTitle: "Globale Statistiken (Alle Projekte)", statsGlobalTotal: "Stimmen gesamt (global):", statsGlobalToday: "Heute (global):", statsGlobalLastWeek: "Letzte 7 Tage (global):", statsGlobalBreakdown: "Stimmungen (global):" }
+        en: { 
+            pageTitle: "Mini-App: Mood Tracker", appTitle: "Mood Tracker", appSubtitle: "Help us track the community's current mood!", 
+            buttonText: "How are you feeling right now?", modalTitle: "How are you feeling right now?", settingsTitle: "Settings & Global Stats", 
+            thankYouMessage: "Thank you for your vote!", alreadyVotedMessage: "You have already voted. Please try again later.",
+            moods: ["Terrible", "Bad", "Neutral", "Good", "Great"],
+            responses: [
+                { text: "We're sorry to hear that. Maybe some jokes will cheer you up?", link: { text: "Show me jokes", url: "https://www.rd.com/list/funniest-jokes-of-all-time/" } },
+                { text: "Hope things get better soon!", link: null }, { text: "Thanks for your feedback.", link: null },
+                { text: "Glad to hear that!", link: null }, { text: "Awesome! Keep up the great mood.", link: null }
+            ],
+            statsProjectTotal: "Votes in this project:", statsProjectBreakdown: "Moods in this project:", 
+            statsGlobalTitle: "Global Statistics (All Projects)", statsGlobalTotal: "Total votes (global):", 
+            statsGlobalToday: "Today (global):", statsGlobalLastWeek: "Last 7 days (global):", statsGlobalBreakdown: "Moods (global):",
+            footerText: 'Made with <span class="heart-icon">❤️</span> by MELIORO Systems',
+            gdprLinkText: "GDPR Consent",
+            gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊"
+        },
+        cs: { 
+            pageTitle: "Mini-aplikace: Měřič nálady", appTitle: "Měřič nálady", appSubtitle: "Pomozte nám sledovat aktuální náladu v komunitě!", 
+            buttonText: "Jak se teď cítíš?", modalTitle: "Jak se teď cítíš?", settingsTitle: "Nastavení & Globální statistiky", 
+            thankYouMessage: "Děkujeme za hlas!", alreadyVotedMessage: "Dnes jste již hlasoval(a). Zkuste to prosím později.",
+            moods: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"],
+            responses: [
+                { text: "To nás mrzí. Třeba vám zvedne náladu pár vtipů?", link: { text: "Ukaž vtipy", url: "https://www.vtipnicek.cz/nejlepsi-vtipy" } },
+                { text: "Snad bude brzy lépe!", link: null }, { text: "Děkujeme za zpětnou vazbu.", link: null },
+                { text: "To rádi slyšíme!", link: null }, { text: "Paráda! Udržte si skvělou náladu.", link: null }
+            ],
+            statsProjectTotal: "Hlasů v tomto projektu:", statsProjectBreakdown: "Nálady v tomto projektu:", 
+            statsGlobalTitle: "Globální statistiky (všechny projekty)", statsGlobalTotal: "Celkem hlasů (globálně):", 
+            statsGlobalToday: "Dnes (globálně):", statsGlobalLastWeek: "Posledních 7 dní (globálně):", statsGlobalBreakdown: "Nálady (globálně):",
+            footerText: 'S <span class="heart-icon">❤️</span> vyrobilo MELIORO Systems',
+            gdprLinkText: "Souhlas s GDPR",
+            gdprAlertText: "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊"
+        },
+        sk: { /* doplňte překlady */ },
+        de: { /* doplňte překlady */ }
     },
     
     // Tyto údaje získáte podle návodu v Části 2
