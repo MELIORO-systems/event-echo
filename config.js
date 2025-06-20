@@ -3,7 +3,7 @@ const config = {
     votingFrequency: 'daily', // Možnosti: 'daily', 'hourly', 'once'
 
     backgroundImage: {
-        filename: "pozadi.png", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
+        filename: "pozadi.PNG", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
