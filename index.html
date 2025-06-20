@@ -19,7 +19,6 @@
         <p data-config-key="appSubtitle"></p>
         <button id="open-modal-btn" data-config-key="buttonText"></button>
         
-        <!-- Viditelná sekce statistik projektu -->
         <div class="project-stats-section">
             <div class="stat-item"><span class="stat-label" data-config-key="statsProjectTotal"></span><span id="stats-project-total" class="stat-value">0</span></div>
             <div class="stat-item"><span class="stat-label" data-config-key="statsProjectBreakdown"></span><span id="stats-project-breakdown" class="stat-value breakdown"></span></div>
@@ -30,7 +29,6 @@
             <span data-config-key="settingsTitle">Nastavení</span>
         </button>
 
-        <!-- Schovaná sekce s globálními statistikami a nastavením -->
         <div class="collapsible-area">
             <div class="global-stats-section">
                 <h2 class="stats-title" data-config-key="statsGlobalTitle"></h2>
@@ -50,13 +48,28 @@
                  <button class="theme-btn" id="theme-sunset" data-theme="sunset" title="Západ slunce"></button>
             </div>
         </div>
+
+        <footer class="app-footer">
+            <span data-config-key="footerText"></span>
+            <a href="#" id="gdpr-link" data-config-key="gdprLinkText"></a>
+        </footer>
     </div>
 
+    <!-- Modální okno pro hlasování -->
     <div id="mood-modal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" id="close-modal-btn">&times;</button>
+            <button class="close-btn" id="close-mood-modal-btn">&times;</button>
             <h2 data-config-key="modalTitle"></h2>
             <div class="mood-selector" id="mood-selector-container"></div>
+        </div>
+    </div>
+    
+    <!-- Modální okno pro odpověď po hlasování -->
+    <div id="response-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-response-modal-btn">&times;</button>
+            <p id="response-text"></p>
+            <a href="#" target="_blank" rel="noopener noreferrer" id="response-link" class="response-button" style="display: none;"></a>
         </div>
     </div>
 </body>
