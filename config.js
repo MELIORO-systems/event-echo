@@ -1,4 +1,6 @@
 const config = {
+        // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
+    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
     projectId: "default-project-id", 
     votingFrequency: 'daily',
 
