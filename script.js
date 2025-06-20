@@ -23,8 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const collapsibleArea = document.querySelector('.collapsible-area');
     const gdprLink = document.getElementById('gdpr-link');
     let currentLang = 'en', currentTranslations = {};
-    const moods_paths = ["M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-4-6a8.84 8.84 0 0 0 8 0c.55 0 1 .45 1 1s-.45 1-1 1a10.84 10.84 0 0 1-10 0c-.55 0-1-.45-1-1s.45-1 1-1zm1.5-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z", "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-3.5-6.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm7 0c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-3.5 2c-1.31 0-2.5.38-3.57.97.27.69.93 1.13 1.7 1.13.43 0 .83-.17 1.13-.44.49.19 1.02.34 1.56.41.22.6.82 1.04 1.53 1.04.9 0 1.63-.73 1.63-1.63 0-.69-.44-1.28-1.04-1.53.1-.07.2-.14.28-.21.2-.17.38-.36.54-.57.48.56 1.19.94 2.01.94.83 0 1.5-.67 1.5-1.5S15.33 14 14.5 14c-1.12 0-2.11.53-2.73 1.33-.24-.09-.49-.16-.76-.2.09-.25.19-.5.29-.73h.01c.2-.5.3-1.02.3-1.56 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5c0 .33.11.65.3.91-.49.33-1.06.6-1.69.81.25.68.91 1.15 1.69 1.15.56 0 1.06-.31 1.34-.76z", "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-5-6h10v2H7v-2zm1.5-2.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z", "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z", "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM8.5 9.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5S10.83 8 10 8s-1.5.67-1.5 1.5zm5.5 0c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5S16.33 8 15.5 8s-1.5.67-1.5 1.5zM12 17.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"];
-    const createBreakdownHtml = (votes) => votes.map((count, index) => `<svg viewBox="0 0 24 24" style="vertical-align: middle; width: 16px; height: 16px;"><path fill="currentColor" d="${moods_paths[index]}"/></svg> ${count}`).join(' | ');
+    const moods_svgs = [
+        // Hrozně (Terrible)
+        `<svg viewBox="0 0 24 24"><path fill="#f44336" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#ffcdd2" d="M12 14a4 4 0 00-3.8 2.8 1 1 0 00.9.9h5.8a1 1 0 00.9-.9A4 4 0 0012 14zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`,
+        // Špatně (Bad)
+        `<svg viewBox="0 0 24 24"><path fill="#ff9800" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#ffe0b2" d="M8.5 10a1.5 1.5 0 10-1.5 1.5A1.5 1.5 0 008.5 10zm7 0a1.5 1.5 0 10-1.5 1.5A1.5 1.5 0 0015.5 10zM15 15H9a1 1 0 000 2h6a1 1 0 000-2z"/></svg>`,
+        // Neutrálně (Neutral)
+        `<svg viewBox="0 0 24 24"><path fill="#9e9e9e" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#e0e0e0" d="M8 10a1 1 0 10-1-1 1 1 0 001 1zm8 0a1 1 0 10-1-1 1 1 0 001 1zM16 15H8v-2h8z"/></svg>`,
+        // Dobře (Good)
+        `<svg viewBox="0 0 24 24"><path fill="#4caf50" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#c8e6c9" d="M12 14a4 4 0 003.8-2.8 1 1 0 00-.9-.9h-5.8a1 1 0 00-.9.9A4 4 0 0012 14zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`,
+        // Skvěle (Great)
+        `<svg viewBox="0 0 24 24"><path fill="#2196f3" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#bbdefb" d="M12 12.5a5.5 5.5 0 005.2-3.8 1 1 0 00-.9-1.2h-8.6a1 1 0 00-.9 1.2A5.5 5.5 0 0012 12.5zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`
+    ];
+    const createBreakdownHtml = (votes) => votes.map((count, index) => `${moods_svgs[index]} ${count}`).join(' | ');
 
     if (projectStatsDocRef) {
         projectStatsDocRef.onSnapshot(doc => {
@@ -81,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         moodLabels.forEach((label, index) => {
             const moodEl = document.createElement('div');
             moodEl.className = 'mood';
-            moodEl.innerHTML = `<svg viewBox="0 0 24 24"><path fill="currentColor" d="${moods_paths[index]}"/></svg><div class="mood-label">${label}</div>`;
+            moodEl.innerHTML = `${moods_svgs[index]}<div class="mood-label">${label}</div>`;
             moodEl.addEventListener('click', () => handleMoodClick(index));
             moodSelectorContainer.appendChild(moodEl);
         });
