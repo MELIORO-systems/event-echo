@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titulek stránky se načte z config.js -->
+    <title data-config-key="pageTitle">Měřič nálady</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Důležité: config.js musí být načten PŘED script.js -->
+    <script src="config.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1 data-config-key="appTitle"></h1>
+        <p data-config-key="appSubtitle"></p>
+        <button id="open-modal-btn" data-config-key="buttonText"></button>
+        
+        <div class="stats-section">
+            <h2 data-config-key="statsTitle"></h2>
+            <div class="stat-item">
+                <span class="stat-label">Celkem hlasů:</span>
+                <span id="stats-total" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Dnes:</span>
+                <span id="stats-today" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Posledních 7 dní:</span>
+                <span id="stats-last-week" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Nálady (celkem):</span>
+                <span id="stats-breakdown" class="stat-value" style="font-size: 0.8rem; background-color: transparent; color: var(--text-color); font-weight: 500;"></span>
+            </div>
+        </div>
+
+        <div class="theme-switcher">
+            <button class="theme-btn" id="theme-default" data-theme="default" title="Výchozí"></button>
+            <button class="theme-btn" id="theme-dark" data-theme="dark" title="Tmavý"></button>
+            <button class="theme-btn" id="theme-forest" data-theme="forest" title="Lesní"></button>
+            <button class="theme-btn" id="theme-ocean" data-theme="ocean" title="Oceán"></button>
+            <button class="theme-btn" id="theme-sunset" data-theme="sunset" title="Západ slunce"></button>
+        </div>
+    </div>
+
+    <div id="mood-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-btn">&times;</button>
+            <h2 data-config-key="modalTitle"></h2>
+            <div class="mood-selector" id="mood-selector-container"></div>
+        </div>
+    </div>
+
+</body>
+</html>
