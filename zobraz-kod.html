@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zobrazení hlasování</title>
+
+    <link rel="stylesheet" href="zobraz-kod.css">
+    
+    <!-- Knihovny Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <!-- Knihovna pro generování QR kódu -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- Vaše skripty -->
+    <script src="config.js"></script>
+    <script src="zobraz-kod.js" defer></script>
+</head>
+<body>
+    <div class="display-container">
+        <h1 data-config-key="appTitle"></h1>
+        <p data-config-key="appSubtitle"></p>
+        
+        <div class="stats-display">
+            <div class="stat-display-item">
+                <span class="stat-label" data-config-key="statsProjectTotal"></span>
+                <span id="stats-project-total" class="stat-value">0</span>
+            </div>
+            <div class="stat-display-item">
+                <span class="stat-label" data-config-key="statsProjectBreakdown"></span>
+                <span id="stats-project-breakdown" class="stat-value breakdown"></span>
+            </div>
+        </div>
+
+        <div id="qrcode-container">
+            <div id="qrcode"></div>
+            <p id="scan-text" data-config-key="scanMeText">Naskenujte kód a hlasujte!</p>
+        </div>
+    </div>
+</body>
+</html>
