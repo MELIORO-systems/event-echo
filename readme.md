@@ -1,130 +1,500 @@
-Event Echo - Aplikace pro sběr živé zpětné vazby
-Vítejte v dokumentaci pro aplikaci Event Echo. Tento soubor vám poskytne veškeré informace potřebné k nasazení, konfiguraci a pochopení fungování této univerzální aplikace pro sběr zpětné vazby v reálném čase.
-Obsah
-Co je Event Echo?
-Klíčové funkce
-Struktura souborů
-Návod k nasazení (krok za krokem)
-Krok 1: Vytvoření databáze na Firebase
-Krok 2: Získání konfiguračních údajů
-Krok 3: Nastavení config.js
-Krok 4: Nasazení na hosting
-Detailní popis config.js
-Jak aplikace funguje
-Hlavní aplikace (index.html)
-Prezentační režim (zobraz-kod.html)
-Ladění a hlášky v konzoli
-Co je Event Echo?
-Event Echo je jednoduchá, ale výkonná webová aplikace navržená pro okamžitý sběr zpětné vazby od publika během živých událostí, jako jsou školení, prezentace, konference nebo společenské akce. Umožňuje účastníkům snadno a anonymně vyjádřit své pocity nebo názory pomocí mobilního telefonu, přičemž výsledky se v reálném čase promítají na hlavní obrazovku.
-Aplikace je plně konfigurovatelná a umožňuje sbírat různé typy zpětné vazby – od nálady až po míru souhlasu s prezentovaným tématem.
-Klíčové funkce
-Čtyři typy zpětné vazby: Možnost volby mezi sadami otázek pro Náladu, Pochopení, Líbivost a Souhlas.
-Živé statistiky: Výsledky hlasování se díky databázi Firebase zobrazují v reálném čase bez nutnosti obnovovat stránku.
-Podpora více projektů: Jedna databáze může obsluhovat neomezený počet různých událostí, každá s vlastními statistikami.
-Prezentační režim: Specializovaná stránka (zobraz-kod.html) s QR kódem pro snadné připojení účastníků a zobrazení výsledků na velkém plátně.
-Plná konfigurovatelnost: Veškeré texty, popisky, typy otázek a nastavení se mění na jediném místě v souboru config.js.
-Lokalizace: Aplikace je připravena pro češtinu a angličtinu.
-Personalizace vzhledu: Možnost nastavit vlastní obrázek na pozadí a vybrat si z pěti barevných motivů.
-Struktura souborů
-Projekt se skládá ze dvou hlavních částí:
-1. Hlavní aplikace (pro uživatele):
-index.html: Hlavní stránka, kde uživatelé hlasují.
-style.css: Styly pro hlavní aplikaci.
-script.js: Veškerá logika hlavní aplikace (hlasování, zobrazení statistik, nastavení).
-2. Prezentační režim (pro promítání):
-zobraz-kod.html: Stránka určená pro promítání na plátno. Zobrazuje statistiky a QR kód.
-zobraz-kod.css: Styly pro prezentační režim.
-zobraz-kod.js: Logika pro prezentační režim (načítání dat a generování QR kódu).
-3. Společný konfigurační soubor:
-config.js: Srdce celé aplikace. Zde probíhá veškeré nastavení.
-Návod k nasazení (krok za krokem)
-Krok 1: Vytvoření databáze na Firebase
-Pro sběr hlasů v reálném čase aplikace využívá bezplatnou databázi Firestore od Googlu.
-Jděte na stránku Firebase.
-Klikněte na "Přejít do konzole" (Go to console) a přihlaste se svým Google účtem.
-Klikněte na "+ Vytvořit projekt".
-Pojmenujte svůj projekt (např. event-echo-database) a pokračujte. Můžete nechat Google Analytics zapnuté, nebo je vypnout.
-Po vytvoření projektu se ocitnete v jeho hlavní konzoli. V menu vlevo klikněte na "Sestavení" (Build) -> "Firestore Database".
-Klikněte na velké tlačítko "Vytvořit databázi".
-Nyní se vás zeptá na bezpečnostní pravidla. Pro jednoduchost a testování vyberte "Spustit v testovacím režimu".
-Upozornění: Testovací režim povolí komukoliv číst a zapisovat do vaší databáze po dobu 30 dnů. Pro produkční aplikaci by se pravidla musela nastavit přísněji.
-Vyberte umístění serverů (např. eur3 (Frankfurt)) a klikněte na "Povolit".
-Vaše online databáze je připravena!
-Krok 2: Získání konfiguračních údajů
-V konzoli vašeho nového Firebase projektu klikněte na ikonu ozubeného kola vedle "Přehled projektu" a zvolte "Nastavení projektu".
-V sekci "Vaše aplikace" klikněte na ikonu pro web: </>.
-Zadejte přezdívku pro vaši aplikaci (např. "Event Echo Web") a klikněte na "Zaregistrovat aplikaci".
-Firebase vám nyní zobrazí kód s vašimi unikátními klíči. Najděte v něm objekt nazvaný firebaseConfig. Zkopírujte celý obsah tohoto objektu (od { až po }).
-Krok 3: Nastavení config.js
-Otevřete soubor config.js ve vašem projektu a proveďte následující úpravy:
-Vložte Firebase údaje: Najděte sekci firebaseConfig a vložte do ní zkopírovaný objekt z předchozího kroku.
-Nastavte URL projektu: Do položky projectUrl vložte kompletní URL adresu, na které bude běžet vaše hlavní aplikace (index.html). Je to klíčové pro správné vygenerování QR kódu.
-Příklad pro GitHub Pages: "https://VASEJMENO.github.io/NAZEV-REPOZITARE/"
-Nastavte ID projektu: Změňte projectId z "default-project-id" na unikátní název pro vaši událost (např. "skoleni-excel-2025"). Tento název musí být unikátní pro každou událost, aby se jejich statistiky nepletly.
-Zvolte typ otázek: V položce activeQuestionSet si vyberte jeden ze čtyř typů otázek: 'mood', 'understanding', 'preference', nebo 'agreement'.
-Krok 4: Nasazení na hosting
-Nyní stačí nahrát všechny soubory (index.html, style.css, script.js, config.js, zobraz-kod.html, zobraz-kod.css, zobraz-kod.js a případný obrázek na pozadí) na jakýkoliv webový hosting. Skvělou a bezplatnou volbou je GitHub Pages.
-Detailní popis config.js
-Toto je nejdůležitější soubor pro přizpůsobení aplikace.
-const config = {
-    // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
-    // Příklad: "[https://uzivatel.github.io/event-echo/](https://uzivatel.github.io/event-echo/)"
-    projectUrl: "", 
+# Event Echo - Aplikace pro sběr živé zpětné vazby
 
-    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
-    // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
-    projectId: "default-project-id", 
-    
-    // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
-    votingFrequency: 'daily',
+## 📋 Obsah
 
-    // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
-    activeQuestionSet: 'mood',
+1. [Co je Event Echo?](#co-je-event-echo)
+2. [Ukázka aplikace](#ukázka-aplikace)
+3. [Klíčové funkce](#klíčové-funkce)
+4. [Požadavky](#požadavky)
+5. [Rychlý start (5 minut)](#rychlý-start-5-minut)
+6. [Detailní návod k nasazení](#detailní-návod-k-nasazení)
+   - [Krok 1: Vytvoření Firebase projektu](#krok-1-vytvoření-firebase-projektu)
+   - [Krok 2: Získání konfiguračních údajů](#krok-2-získání-konfiguračních-údajů)
+   - [Krok 3: Konfigurace aplikace](#krok-3-konfigurace-aplikace)
+   - [Krok 4: Nasazení na hosting](#krok-4-nasazení-na-hosting)
+7. [Struktura projektu](#struktura-projektu)
+8. [Detailní popis config.js](#detailní-popis-configjs)
+9. [Typy otázek a jejich použití](#typy-otázek-a-jejich-použití)
+10. [Přizpůsobení vzhledu](#přizpůsobení-vzhledu)
+11. [Správa více událostí](#správa-více-událostí)
+12. [Jak aplikace funguje](#jak-aplikace-funguje)
+13. [Řešení problémů](#řešení-problémů)
+14. [Bezpečnost a GDPR](#bezpečnost-a-gdpr)
+15. [Tipy pro použití na akcích](#tipy-pro-použití-na-akcích)
+16. [Často kladené otázky](#často-kladené-otázky)
 
-    // Nastavení obrázku na pozadí hlavní aplikace
-    backgroundImage: {
-        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
-        recommended_width: "500px",
-        recommended_height: "750px",
-        recommended_format: "JPG, PNG, WEBP"
-    },
+## Co je Event Echo?
 
-    // Překlady a texty aplikace.
-    translations: {
-        // ...
-    },
-    
-    // Vaše unikátní klíče z Firebase.
-    firebaseConfig: {
-        // ...
+Event Echo je jednoduchá webová aplikace pro okamžitý sběr zpětné vazby od publika během živých událostí. Účastníci hlasují pomocí svých mobilních telefonů a výsledky se zobrazují v reálném čase na velkoplošné obrazovce.
+
+**Ideální pro:**
+- 🎓 Školení a workshopy
+- 🎤 Konference a přednášky
+- 💒 Svatby a oslavy
+- 🏢 Firemní meetingy
+- 🎭 Kulturní akce
+
+## Ukázka aplikace
+
+### Hlavní obrazovka (pro účastníky)
+- Jednoduchý design s tlačítkem pro hlasování
+- Zobrazení aktuálních statistik
+- Možnost změny jazyka a barevného motivu
+
+### Prezentační obrazovka (pro promítání)
+- Velké čísla a grafy
+- QR kód pro snadné připojení
+- Automatická aktualizace v reálném čase
+
+## Klíčové funkce
+
+✅ **4 typy zpětné vazby**
+- 😊 Nálada (Jak se cítíte?)
+- 🧠 Pochopení (Jak rozumíte tématu?)
+- ⭐ Líbivost (Jak se vám to líbí?)
+- 👍 Souhlas (Souhlasíte s návrhem?)
+
+✅ **Real-time statistiky** - výsledky se aktualizují okamžitě bez obnovování stránky
+
+✅ **Podpora více projektů** - jedna databáze pro neomezený počet událostí
+
+✅ **Lokalizace** - čeština a angličtina, automatická detekce jazyka
+
+✅ **5 barevných motivů** - přizpůsobte vzhled vaší akci
+
+✅ **QR kód** - účastníci se připojí jedním naskenováním
+
+✅ **Ochrana proti duplicitám** - nastavitelná frekvence hlasování
+
+✅ **Bez osobních údajů** - plně anonymní, GDPR compliant
+
+## Požadavky
+
+- Webový hosting (např. GitHub Pages - zdarma)
+- Google účet (pro Firebase - zdarma do 50 000 čtení/den)
+- Textový editor (např. VS Code, Notepad++)
+- Základní znalost práce se soubory
+
+## Rychlý start (5 minut)
+
+1. **Stáhněte aplikaci**
+   ```bash
+   git clone https://github.com/melioro-systems/event-echo.git
+   ```
+   Nebo stáhněte jako ZIP z GitHubu
+
+2. **Vytvořte Firebase projekt**
+   - Jděte na [console.firebase.google.com](https://console.firebase.google.com)
+   - Klikněte "Create project"
+   - Pojmenujte projekt (např. "moje-udalosti")
+   - Vytvořte Firestore databázi v testovacím režimu
+
+3. **Zkopírujte konfiguraci**
+   - V Firebase console: Project Settings → Your apps → Add web app
+   - Zkopírujte `firebaseConfig` objekt
+
+4. **Upravte config.js**
+   ```javascript
+   firebaseConfig: {
+     // Sem vložte zkopírovaný objekt
+   },
+   projectUrl: "https://vase-domena.cz/", // URL vaší aplikace
+   projectId: "moje-prvni-akce",         // Unikátní ID události
+   ```
+
+5. **Nahrajte na hosting a je hotovo!**
+
+## Detailní návod k nasazení
+
+### Krok 1: Vytvoření Firebase projektu
+
+1. **Přihlaste se do Firebase Console**
+   - Otevřete [console.firebase.google.com](https://console.firebase.google.com)
+   - Přihlaste se Google účtem
+
+2. **Vytvořte nový projekt**
+   - Klikněte na "+ Add project" nebo "+ Vytvořit projekt"
+   - Zadejte název (např. "Event-Echo-Database")
+   - Google Analytics můžete vypnout (není potřeba)
+   - Klikněte "Create project"
+
+3. **Aktivujte Firestore databázi**
+   - V levém menu: Build → Firestore Database
+   - Klikněte "Create database"
+   - Vyberte "Start in test mode" (pro začátek)
+   - Vyberte region (např. eur3 - Frankfurt)
+   - Klikněte "Enable"
+
+⚠️ **Důležité:** Testovací režim umožňuje přístup komukoliv po dobu 30 dnů. Pro produkční použití nastavte bezpečnostní pravidla (viz sekce Bezpečnost).
+
+### Krok 2: Získání konfiguračních údajů
+
+1. **Přidejte webovou aplikaci**
+   - Klikněte na ikonu ozubeného kola → Project settings
+   - Sjeďte dolů k "Your apps"
+   - Klikněte na ikonu </> (Web)
+   - Zadejte název aplikace (např. "Event Echo Web")
+   - Klikněte "Register app"
+
+2. **Zkopírujte konfiguraci**
+   - Firebase vám zobrazí kód s objektem `firebaseConfig`
+   - Zkopírujte celý objekt včetně složených závorek
+
+### Krok 3: Konfigurace aplikace
+
+1. **Otevřete soubor config.js**
+
+2. **Vložte Firebase konfiguraci**
+   ```javascript
+   firebaseConfig: {
+     apiKey: "váš-api-key",
+     authDomain: "váš-projekt.firebaseapp.com",
+     projectId: "váš-projekt",
+     storageBucket: "váš-projekt.appspot.com",
+     messagingSenderId: "123456789",
+     appId: "váš-app-id"
+   }
+   ```
+
+3. **Nastavte URL projektu**
+   ```javascript
+   projectUrl: "https://vase-domena.cz/event-echo/",
+   ```
+   Toto je URL, kde bude aplikace dostupná. Použije se pro QR kód.
+
+4. **Nastavte unikátní ID projektu**
+   ```javascript
+   projectId: "skoleni-excel-2025-01",
+   ```
+   ⚠️ **Důležité:** Každá událost MUSÍ mít unikátní ID!
+
+5. **Vyberte typ otázek**
+   ```javascript
+   activeQuestionSet: 'mood', // nebo 'understanding', 'preference', 'agreement'
+   ```
+
+6. **Nastavte frekvenci hlasování**
+   ```javascript
+   votingFrequency: 'daily', // nebo 'hourly', 'once'
+   ```
+
+### Krok 4: Nasazení na hosting
+
+#### Možnost A: GitHub Pages (zdarma)
+
+1. **Vytvořte GitHub repozitář**
+   - Přihlaste se na [github.com](https://github.com)
+   - Klikněte "New repository"
+   - Pojmenujte ho (např. "moje-event-echo")
+   - Nastavte jako Public
+
+2. **Nahrajte soubory**
+   - Nahrajte všechny soubory projektu
+   - Commitněte změny
+
+3. **Aktivujte GitHub Pages**
+   - Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: main, folder: / (root)
+   - Save
+
+4. **Aplikace bude dostupná na:**
+   ```
+   https://[váš-username].github.io/[název-repozitáře]/
+   ```
+
+#### Možnost B: Vlastní hosting
+
+Nahrajte všechny soubory na váš webový server přes FTP.
+
+## Struktura projektu
+
+```
+event-echo/
+│
+├── index.html          # Hlavní aplikace pro účastníky
+├── style.css           # Styly hlavní aplikace  
+├── script.js           # Logika hlavní aplikace
+│
+├── zobraz-kod.html     # Prezentační režim (pro promítání)
+├── zobraz-kod.css      # Styly prezentačního režimu
+├── zobraz-kod.js       # Logika prezentačního režimu
+│
+├── config.js           # ⚙️ HLAVNÍ KONFIGURAČNÍ SOUBOR
+└── readme.md           # Dokumentace
+```
+
+## Detailní popis config.js
+
+### Základní nastavení
+
+```javascript
+// URL adresa vaší aplikace (pro QR kód)
+projectUrl: "https://example.com/event-echo/",
+
+// Unikátní identifikátor události
+projectId: "unikatni-nazev-akce",
+
+// Jak často může uživatel hlasovat
+votingFrequency: 'daily',  // Možnosti:
+                           // 'once' - pouze jednou
+                           // 'hourly' - jednou za hodinu  
+                           // 'daily' - jednou denně
+
+// Typ otázek
+activeQuestionSet: 'mood', // Možnosti:
+                          // 'mood' - Jak se cítíte?
+                          // 'understanding' - Jak rozumíte?
+                          // 'preference' - Jak se vám to líbí?
+                          // 'agreement' - Souhlasíte?
+```
+
+### Nastavení pozadí
+
+```javascript
+backgroundImage: {
+    filename: "pozadi.jpg",  // Název souboru (musí být v hlavní složce)
+                            // Nechte prázdné pro výchozí pozadí
+    recommended_width: "500px",
+    recommended_height: "750px",
+    recommended_format: "JPG, PNG, WEBP"
+}
+```
+
+### Přizpůsobení textů
+
+Všechny texty aplikace můžete upravit v sekci `translations`. Příklad:
+
+```javascript
+translations: {
+    cs: {
+        appTitle: "Váš vlastní název",
+        appSubtitle: "Váš vlastní podtitul",
+        buttonText: "Klikněte zde",
+        // ... atd
     }
-};
+}
+```
 
+## Typy otázek a jejich použití
 
-Jak aplikace funguje
-Hlavní aplikace (index.html)
-Uživatelské rozhraní: Uživatel vidí hlavní stránku, kde může kliknutím na tlačítko otevřít modální okno a hlasovat. Po odhlasování se mu zobrazí personalizovaná zpráva.
-Statistiky projektu: Na hlavní stránce se v reálném čase zobrazují statistiky pouze pro aktuální projectId.
-Nastavení: Po kliknutí na ikonu ozubeného kola se rozbalí panel, kde si uživatel může změnit jazyk a barevný motiv. Zde se také zobrazují globální statistiky sečtené ze všech projektů v databázi.
-Místní úložiště (localStorage): Aplikace si do prohlížeče uživatele ukládá:
-Zvolený jazyk a motiv.
-Časovou značku posledního hlasování pro daný projekt, aby respektovala nastavení votingFrequency.
-Prezentační režim (zobraz-kod.html)
-Účel: Tato stránka je navržena pro zobrazení na velkoplošné obrazovce.
-Funkčnost:
-Načte projectId a projectUrl z config.js.
-Připojí se k databázi a v reálném čase zobrazuje statistiky pouze pro daný projectId.
-Pomocí knihovny qrcode.js vygeneruje QR kód, který odkazuje na projectUrl, aby se účastníci mohli snadno připojit.
-Ladění a hlášky v konzoli
-Pokud otevřete vývojářskou konzoli prohlížeče (obvykle klávesou F12), uvidíte logovací hlášky, které vám pomohou pochopit, co se děje:
---- Event Echo App Initializing ---: Znamená, že se skript script.js úspěšně spustil.
-Firebase initialized successfully.: Aplikace se úspěšně připojila k vaší databázi.
-Applying translations for language: cs: Aplikace nastavuje texty pro zvolený jazyk.
-Rendering options for: mood: Aplikace vykresluje ikony a popisky pro zvolenou sadu otázek.
-Vote cast for option 2: Uživatel kliknul na třetí možnost.
-Processing vote...: Skript začal zpracovávat hlas.
-Vote successfully saved.: Hlas byl úspěšně zapsán do databáze.
-Běžné varování a chyby:
-WARNING: Using default 'projectId'...: Zapomněli jste v config.js změnit výchozí projectId.
-WARNING: Firebase is not configured...: Nevložili jste své údaje do firebaseConfig. Aplikace poběží, ale bez ukládání a zobrazování statistik.
-Error during vote transaction...: Problém při komunikaci s databází. Zkontrolujte připojení k internetu a správnost firebaseConfig.
+### 1. Nálada (mood)
+**Použití:** Zjištění celkové atmosféry
+- 😢 Hrozně
+- 😟 Špatně  
+- 😐 Neutrálně
+- 😊 Dobře
+- 😄 Skvěle
+
+**Vhodné pro:** Začátek/konec akce, pravidelné měření během dne
+
+### 2. Pochopení (understanding)
+**Použití:** Kontrola, zda publikum rozumí
+- ❌ Vůbec
+- ❓ Trochu
+- ✓ Dobře
+- ✓✓ Většinou
+- ✓✓✓ Perfektně
+
+**Vhodné pro:** Školení, přednášky, technické prezentace
+
+### 3. Líbivost (preference)
+**Použití:** Hodnocení obsahu nebo nápadu
+- ⭐ Vůbec ne
+- ⭐⭐ Ujde to
+- ⭐⭐⭐ Je to dobré
+- ⭐⭐⭐⭐ Líbí se mi to
+- ⭐⭐⭐⭐⭐ Je to super
+
+**Vhodné pro:** Hodnocení produktů, návrhů, vystoupení
+
+### 4. Souhlas (agreement)
+**Použití:** Hlasování o návrzích
+- 👎👎 Zásadně nesouhlasím
+- 👎 Nesouhlasím
+- 🤷 Neutrální
+- 👍 Souhlasím
+- 👍👍 Zcela souhlasím
+
+**Vhodné pro:** Rozhodování, schvalování, týmové meetingy
+
+## Přizpůsobení vzhledu
+
+### Barevné motivy
+
+Aplikace obsahuje 5 předdefinovaných motivů:
+- **Default** - Modrá profesionální
+- **Dark** - Tmavý režim
+- **Forest** - Zelená přírodní
+- **Ocean** - Tyrkysová mořská
+- **Sunset** - Oranžová teplá
+
+Uživatelé si mohou motiv změnit v nastavení aplikace.
+
+### Vlastní pozadí
+
+1. Připravte obrázek (doporučeno 500x750px)
+2. Nahrajte ho do hlavní složky projektu
+3. V config.js nastavte:
+   ```javascript
+   backgroundImage: {
+       filename: "moje-pozadi.jpg"
+   }
+   ```
+
+### Úprava CSS
+
+Pro pokročilé úpravy editujte:
+- `style.css` - vzhled hlavní aplikace
+- `zobraz-kod.css` - vzhled prezentačního režimu
+
+## Správa více událostí
+
+### Metoda 1: Různá projectId (doporučeno)
+
+Použijte stejnou instalaci pro více událostí změnou `projectId`:
+
+```javascript
+// Pondělní školení
+projectId: "skoleni-excel-pondeli",
+
+// Úterní školení  
+projectId: "skoleni-excel-utery",
+
+// Firemní party
+projectId: "vanoce-2025",
+```
+
+### Metoda 2: Samostatné instalace
+
+Pro každou událost vytvořte kopii všech souborů v jiné složce:
+```
+/skoleni-excel/
+/firemni-party/
+/konference-2025/
+```
+
+## Jak aplikace funguje
+
+### Tok dat
+
+1. **Uživatel otevře aplikaci** → Načte se konfigurace
+2. **Klikne na tlačítko** → Otevře se okno s možnostmi
+3. **Vybere možnost** → Kontrola, zda už nehlasoval
+4. **Hlas se odešle** → Firebase transakce zajistí bezpečný zápis
+5. **Databáze se aktualizuje** → Všichni vidí nové výsledky
+6. **Zobrazí se poděkování** → S personalizovanou zprávou
+
+### Technické detaily
+
+- **Real-time synchronizace:** Firebase `onSnapshot` listenery
+- **Prevence duplicit:** localStorage ukládá časovou značku
+- **Transakce:** Zajišťují konzistenci při současném hlasování
+- **Historie:** Ukládá se max 1000 posledních hlasů
+
+## Řešení problémů
+
+### Aplikace se nenačítá
+
+1. **Zkontrolujte konzoli** (F12 → Console)
+2. **Ověřte Firebase konfiguraci** - jsou všechny údaje správně?
+3. **Zkontrolujte URL** - odpovídá nastavení v config.js?
+
+### Hlasování nefunguje
+
+- **"Firebase is not configured"** → Doplňte firebaseConfig
+- **"Using default projectId"** → Změňte projectId na unikátní
+- **Chyba transakce** → Zkontrolujte internetové připojení
+
+### QR kód se nezobrazuje
+
+- Vyplňte `projectUrl` v config.js
+- URL musí být kompletní včetně https://
+
+### Statistiky se neaktualizují
+
+1. Ověřte, že Firebase projekt běží
+2. Zkontrolujte, zda nevypršel testovací režim (30 dnů)
+3. Refreshněte stránku (Ctrl+F5)
+
+## Bezpečnost a GDPR
+
+### Ochrana dat
+
+✅ **Aplikace NEUKLÁDÁ:**
+- Žádné osobní údaje
+- IP adresy
+- Cookies (kromě technických)
+- Identifikátory zařízení
+
+✅ **Aplikace UKLÁDÁ pouze:**
+- Typ hlasu (0-4)
+- Časovou značku
+- Typ otázky
+
+### Firebase bezpečnostní pravidla
+
+Pro produkční použití nastavte v Firebase Console → Firestore → Rules:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /moodStats/{document} {
+      allow read: if true;
+      allow write: if request.auth == null 
+        && request.resource.data.keys().hasAll(['votes', 'history'])
+        && request.resource.data.votes is map
+        && request.resource.data.history is list;
+    }
+  }
+}
+```
+
+## Tipy pro použití na akcích
+
+### Před akcí
+
+1. **Otestujte vše předem** - včetně promítání
+2. **Připravte QR kód** - vytiskněte nebo připravte slide
+3. **Zkontrolujte internet** - na místě akce
+4. **Nastavte správný typ otázek** - podle typu akce
+
+### Během akce
+
+1. **Ukažte QR kód** na začátku
+2. **Vyzvěte k hlasování** v klíčových momentech
+3. **Komentujte výsledky** - využijte je k interakci
+4. **Promítejte statistiky** - použijte zobraz-kod.html
+
+### Po akci
+
+1. **Stáhněte data** - screenshot nebo export z Firebase
+2. **Analyzujte trendy** - kdy byla nejlepší nálada?
+3. **Sdílejte výsledky** - s organizátory/účastníky
+
+## Často kladené otázky
+
+**Q: Kolik hlasů zvládne aplikace?**
+A: Firebase free tier: 50 000 čtení a 20 000 zápisů denně. To stačí na tisíce hlasujících.
+
+**Q: Lze exportovat data?**
+A: Ano, z Firebase Console můžete data exportovat do JSON.
+
+**Q: Funguje offline?**
+A: Ne, aplikace vyžaduje internetové připojení.
+
+**Q: Lze přidat více jazyků?**
+A: Ano, stačí přidat nový jazyk do sekce `translations` v config.js.
+
+**Q: Jak dlouho se data uchovávají?**
+A: Dokud je nesmazete nebo nezrušíte Firebase projekt.
+
+**Q: Je to zdarma?**
+A: Ano, pro běžné použití. Firebase má velkorysé free limity.
+
+---
+
+💡 **Potřebujete pomoc?** Kontaktujte [MELIORO Systems](https://melioro.cz)
+
+⭐ **Líbí se vám aplikace?** Dejte hvězdičku na [GitHubu](https://github.com/melioro-systems/event-echo)
