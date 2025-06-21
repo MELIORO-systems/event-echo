@@ -1,7 +1,7 @@
 const config = {
-    // Demo konfigurace pro měření nálady
+    // Demo konfigurace pro měření nálady na konferenci
     projectUrl: window.location.origin + window.location.pathname + "?config=mood",
-    projectId: "demo-mood-2025",
+    projectId: "demo-techconf-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'mood', // Přednastaveno na měření nálady
     
@@ -14,36 +14,36 @@ const config = {
 
     translations: {
         en: { 
-            pageTitle: "Mood Meter Demo - Event Echo", 
+            pageTitle: "TechConf 2025 Prague", 
             settingsTitle: "Settings & Global Stats",
-            thankYouMessage: "Thank you for trying our demo!", 
+            thankYouMessage: "Thank you for sharing your mood!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
             statsGlobalTitle: "Global Statistics (Demo)", 
             statsGlobalTotal: "Total demo votes:", 
             statsGlobalToday: "Demo votes today:", 
             statsGlobalLastWeek: "Demo votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
-            scanMeText: "Scan to try the demo!",
+            scanMeText: "Scan to share your mood!",
 
             questionSets: {
                 mood: {
-                    appTitle: "Mood Meter Demo", 
-                    appSubtitle: "Try our mood tracking feature!",
-                    buttonText: "How are you feeling?", 
-                    modalTitle: "How are you feeling right now?",
+                    appTitle: "TechConf 2025 Prague", 
+                    appSubtitle: "How are you feeling at today's conference?",
+                    buttonText: "Share mood", 
+                    modalTitle: "What's your current mood?",
                     options: ["Terrible", "Bad", "Neutral", "Good", "Great"],
                     responses: [
-                        { text: "Thanks for trying! In real events, this helps organizers understand the atmosphere.", link: null },
-                        { text: "Your feedback helps! This demo shows how mood tracking works.", link: null },
-                        { text: "Neutral is normal! Thanks for testing our demo.", link: null },
-                        { text: "Great to hear! This is how positive feedback looks.", link: null },
-                        { text: "Awesome! You've seen how the mood meter works.", link: null }
+                        { text: "Sorry to hear that. Free coffee is available at booth 3!", link: null },
+                        { text: "Thanks for your honesty. Is there something specific bothering you?", link: null },
+                        { text: "Thanks for the feedback. Enjoy the rest of the program!", link: null },
+                        { text: "Great! We're glad you're enjoying the conference.", link: null },
+                        { text: "Awesome! Your energy is contagious! 🎉", link: null }
                     ],
-                    statsProjectTotal: "Demo votes:",
-                    statsProjectBreakdown: "Mood distribution (demo):",
-                    statsGlobalBreakdown: "Global Mood Demo:"
+                    statsProjectTotal: "Conference moods:",
+                    statsProjectBreakdown: "Mood distribution:",
+                    statsGlobalBreakdown: "Conference Mood Tracker:"
                 },
-                // Ostatní typy nejsou potřeba, protože toto je demo pouze pro mood
+                // Placeholder pro ostatní typy
                 understanding: {
                     appTitle: "Not Available in This Demo",
                     appSubtitle: "Please use config=understanding",
@@ -98,34 +98,34 @@ const config = {
             }
         },
         cs: { 
-            pageTitle: "Demo Měřič nálady - Event Echo", 
+            pageTitle: "TechConf 2025 Prague", 
             settingsTitle: "Nastavení & Globální statistiky",
-            thankYouMessage: "Děkujeme za vyzkoušení dema!", 
+            thankYouMessage: "Děkujeme za sdílení nálady!", 
             alreadyVotedMessage: "Demo limit: Hlasovat můžete jednou za hodinu.",
             statsGlobalTitle: "Globální statistiky (Demo)", 
             statsGlobalTotal: "Celkem demo hlasů:", 
             statsGlobalToday: "Demo hlasů dnes:", 
             statsGlobalLastWeek: "Demo hlasů (7 dní):",
             gdprAlertText: "Toto je demo. Žádné osobní údaje se neukládají. 😊",
-            scanMeText: "Naskenujte pro vyzkoušení!",
+            scanMeText: "Naskenujte pro sdílení nálady!",
 
             questionSets: {
                 mood: {
-                    appTitle: "Demo Měřič nálady", 
-                    appSubtitle: "Vyzkoušejte měření nálady!",
-                    buttonText: "Jak se teď cítíš?", 
-                    modalTitle: "Jak se teď cítíš?",
+                    appTitle: "TechConf 2025 Prague", 
+                    appSubtitle: "Jak se cítíte na dnešní konferenci?",
+                    buttonText: "Sdílet náladu", 
+                    modalTitle: "Jaká je vaše aktuální nálada?",
                     options: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"],
                     responses: [
-                        { text: "Díky za vyzkoušení! Na skutečných akcích to pomáhá organizátorům.", link: null },
-                        { text: "Vaše zpětná vazba pomáhá! Toto demo ukazuje funkci měření nálady.", link: null },
-                        { text: "Neutrální je normální! Díky za otestování.", link: null },
-                        { text: "Skvěle! Takto vypadá pozitivní zpětná vazba.", link: null },
-                        { text: "Paráda! Viděli jste, jak měřič nálady funguje.", link: null }
+                        { text: "To nás mrzí. Káva zdarma je u stánku 3, třeba pomůže!", link: null },
+                        { text: "Děkujeme za upřímnost. Něco konkrétního vás trápí?", link: null },
+                        { text: "Díky za feedback. Užijte si další program!", link: null },
+                        { text: "Skvěle! Těší nás, že se vám konference líbí.", link: null },
+                        { text: "Paráda! Vaše energie je nakažlivá! 🎉", link: null }
                     ],
-                    statsProjectTotal: "Demo hlasů:",
-                    statsProjectBreakdown: "Rozložení nálady (demo):",
-                    statsGlobalBreakdown: "Globální demo nálady:"
+                    statsProjectTotal: "Nálady na konferenci:",
+                    statsProjectBreakdown: "Rozložení nálad:",
+                    statsGlobalBreakdown: "Měřič nálady konference:"
                 },
                 // Placeholder pro ostatní typy
                 understanding: {
