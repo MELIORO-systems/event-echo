@@ -1,11 +1,21 @@
 const config = {
-    projectUrl: "", 
-    projectId: "default-project-id", 
-    votingFrequency: 'daily',
-    activeQuestionSet: 'mood', 
+    // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
+    // Příklad: "https://uzivatel.github.io/event-echo/"
+    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
 
+    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
+    // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
+    projectId: "default-project-id", 
+    
+    // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
+    votingFrequency: 'daily',
+
+    // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
+    activeQuestionSet: 'mood',
+
+    // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
-        filename: "https://melioro-systems.github.io/mereni-nalady-web/", 
+        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
