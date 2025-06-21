@@ -161,7 +161,7 @@ body {
     padding: 2rem;
     border-radius: 15px;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     position: relative;
     transform: scale(.95);
     transition: transform .3s ease, background-color .3s
@@ -173,7 +173,9 @@ body {
 
 .modal-content h2, h2.stats-title {
     color: var(--text-color);
-    transition: color .3s
+    transition: color .3s;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 /* Zavírací tlačítko */
@@ -193,32 +195,58 @@ body {
     color: var(--text-color)
 }
 
-/* Výběr nálady */
+/* Výběr nálady - OPRAVENO */
 .mood-selector {
     display: flex;
     justify-content: space-around;
-    margin: 2rem 0
+    align-items: flex-start;
+    margin: 2rem 0;
+    gap: 10px;
 }
 
 .mood {
     cursor: pointer;
     text-align: center;
-    transition: transform .2s ease
+    transition: transform .2s ease;
+    flex: 1;
+    max-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .mood:hover {
     transform: scale(1.15)
 }
 
+/* SVG ikony - OPRAVENO */
 .mood svg {
     width: 50px;
-    height: 50px
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Specifické styly pro SVG elementy */
+svg {
+    overflow: visible;
+    vertical-align: middle;
+}
+
+/* Zajistit správné zobrazení všech SVG cest a tvarů */
+.mood svg circle,
+.mood svg path,
+.mood svg line,
+.mood svg polygon {
+    vector-effect: non-scaling-stroke;
 }
 
 .mood-label {
     font-size: .8rem;
     color: var(--text-light);
-    margin-top: .5rem
+    margin-top: .5rem;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 /* Sekce statistik */
@@ -268,22 +296,28 @@ body {
     gap: 8px;
 }
 
+/* Rozložení statistik - OPRAVENO */
 .stat-value.breakdown {
     font-size: 1rem;
-    gap: 12px;
+    gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0.5rem 0;
 }
 
 .stat-value.breakdown > div {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
+    padding: 0 5px;
 }
 
 .stat-value.breakdown svg {
     width: 24px;
     height: 24px;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Tlačítko nastavení */
@@ -326,7 +360,7 @@ body {
 }
 
 .collapsible-area.open {
-    max-height: 2000px; /* Zvýšeno z 500px pro zobrazení všech 4 typů statistik */
+    max-height: 2000px;
     opacity: 1;
     padding-top: 1.5rem;
     margin-top: 1rem;
@@ -339,7 +373,7 @@ body {
     padding-top: 0;
     border-top: none;
     margin-bottom: 1.5rem;
-    overflow: visible; /* Přidáno pro jistotu */
+    overflow: visible;
 }
 
 .global-stats-section h2.stats-title {
@@ -475,7 +509,7 @@ body {
     flex-direction: column;
     gap: 1rem;
     margin-top: 1rem;
-    margin-bottom: 1.5rem; /* Přidán spodní margin */
+    margin-bottom: 1.5rem;
 }
 
 #global-breakdown-container .stat-item {
@@ -498,4 +532,33 @@ body {
     background-color: var(--light-primary);
     border: 2px solid var(--primary-color);
     padding: 0.8rem 0.5rem;
+}
+
+/* Responzivní design */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .app-container {
+        padding: 1.5rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .mood {
+        max-width: 60px;
+    }
+    
+    .mood svg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .mood-label {
+        font-size: 0.7rem;
+    }
 }
