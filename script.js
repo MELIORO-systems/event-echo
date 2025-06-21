@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const responseLink = document.getElementById('response-link');
     const settingsToggleBtn = document.getElementById('settings-toggle-btn');
     const collapsibleArea = document.querySelector('.collapsible-area');
-    const gdprLink = document.getElementById('gdpr-link');
     const globalBreakdownContainer = document.getElementById('global-breakdown-container');
     let currentLang = 'en', currentTranslations = {};
     let currentQuestionSet;
@@ -309,10 +308,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     const initGdprLink = () => {
-        gdprLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert(currentTranslations.gdprAlertText);
-        });
+        // Počkat až se vykreslí patička s odkazy
+        setTimeout(() => {
+            const gdprLink = document.getElementById('gdpr-link');
+            if (gdprLink) {
+                gdprLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert(currentTranslations.gdprAlertText);
+                });
+            }
+        }, 100);
     };
     
     const initBackgroundImage = () => {
