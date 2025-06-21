@@ -115,9 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentTranslations[key]) {
                 if (el.tagName === 'TITLE') {
                     el.textContent = currentTranslations[key];
-                } else if (key === 'footerText') {
-                    // Speciální zpracování pro patičku
-                    el.innerHTML = currentTranslations[key];
                 } else {
                     el.innerHTML = currentTranslations[key];
                 }
@@ -125,9 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.querySelectorAll('.language-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
         renderOptions();
-        
-        // Znovu inicializovat GDPR odkaz po změně jazyka
-        initGdprLink();
         console.groupEnd();
     };
 
@@ -320,16 +314,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     const initGdprLink = () => {
-        // Počkat až se vykreslí patička s odkazy
-        setTimeout(() => {
-            const gdprLink = document.getElementById('gdpr-link');
-            if (gdprLink) {
-                gdprLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert(currentTranslations.gdprAlertText);
-                });
-            }
-        }, 100);
+        const gdprLink = document.getElementById('gdpr-link');
+        if (gdprLink) {
+            gdprLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Zobrazit alert podle aktuálního jazyka
+                const message = currentLang === 'cs' 
+                    ? "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊"
+                    : "I acknowledge that this mini-application does not store or process any personal data. 😊";
+                alert(message);
+            });
+        }
     };
     
     const initBackgroundImage = () => {
