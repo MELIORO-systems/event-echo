@@ -112,10 +112,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('[data-config-key]').forEach(el => {
             const key = el.dataset.configKey;
-            if (currentTranslations[key]) el.tagName === 'TITLE' ? el.textContent = currentTranslations[key] : el.innerHTML = currentTranslations[key];
+            if (currentTranslations[key]) {
+                if (el.tagName === 'TITLE') {
+                    el.textContent = currentTranslations[key];
+                } else if (key === 'footerText') {
+                    // Speciální zpracování pro patičku
+                    el.innerHTML = currentTranslations[key];
+                } else {
+                    el.innerHTML = currentTranslations[key];
+                }
+            }
         });
         document.querySelectorAll('.language-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
         renderOptions();
+        
+        // Znovu inicializovat GDPR odkaz po změně jazyka
+        initGdprLink();
         console.groupEnd();
     };
 
