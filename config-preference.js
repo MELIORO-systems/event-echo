@@ -1,7 +1,7 @@
 const config = {
-    // Demo konfigurace pro průzkum líbivosti
+    // Demo konfigurace pro prezentaci nového designu
     projectUrl: window.location.origin + window.location.pathname + "?config=preference",
-    projectId: "demo-preference-2025",
+    projectId: "demo-design-presentation-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'preference', // Přednastaveno na průzkum líbivosti
     
@@ -14,34 +14,34 @@ const config = {
 
     translations: {
         en: { 
-            pageTitle: "Preference Poll Demo - Event Echo", 
+            pageTitle: "New Design Presentation", 
             settingsTitle: "Settings & Global Stats",
-            thankYouMessage: "Thank you for trying our demo!", 
+            thankYouMessage: "Thank you for your rating!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
             statsGlobalTitle: "Global Statistics (Demo)", 
             statsGlobalTotal: "Total demo votes:", 
             statsGlobalToday: "Demo votes today:", 
             statsGlobalLastWeek: "Demo votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
-            scanMeText: "Scan to try the demo!",
+            scanMeText: "Scan to rate our design!",
 
             questionSets: {
                 preference: {
-                    appTitle: "Preference Poll Demo", 
-                    appSubtitle: "Rate products, ideas, or presentations!",
-                    buttonText: "How much do you like this?", 
-                    modalTitle: "How much do you like this?",
+                    appTitle: "New Design Presentation", 
+                    appSubtitle: "Your opinions shape our products",
+                    buttonText: "Rate the design", 
+                    modalTitle: "How do you like the new design?",
                     options: ["Don't like it", "It's okay", "It's good", "I like it", "I love it"],
                     responses: [
-                        { text: "Thanks for trying! In real events, this helps gather honest feedback.", link: null },
-                        { text: "Your rating helps! This demo shows neutral responses.", link: null },
-                        { text: "Good rating! This demonstrates positive feedback collection.", link: null },
-                        { text: "Great to see you like it! The preference poll is working well.", link: null },
-                        { text: "Amazing! You've experienced how preference polling works.", link: null }
+                        { text: "Thank you for your honest feedback. Every opinion helps us improve our products.", link: null },
+                        { text: "We appreciate your opinion. We're working on design improvements.", link: null },
+                        { text: "Thank you! Your opinion is important to us.", link: null },
+                        { text: "Great! We look forward to launching the new design.", link: null },
+                        { text: "Wow! You're our new design ambassador! 🏆", link: null }
                     ],
-                    statsProjectTotal: "Demo votes:",
-                    statsProjectBreakdown: "Preference ratings (demo):",
-                    statsGlobalBreakdown: "Global Preference Demo:"
+                    statsProjectTotal: "Design ratings:",
+                    statsProjectBreakdown: "Rating distribution:",
+                    statsGlobalBreakdown: "Design Preference Poll:"
                 },
                 // Placeholder pro ostatní typy
                 mood: {
@@ -111,21 +111,21 @@ const config = {
 
             questionSets: {
                 preference: {
-                    appTitle: "Demo Průzkum líbivosti", 
-                    appSubtitle: "Ohodnoťte produkty, nápady nebo prezentace!",
-                    buttonText: "Jak se vám to líbí?", 
-                    modalTitle: "Jak moc se vám to líbí?",
+                    appTitle: "Představení nového designu", 
+                    appSubtitle: "Vaše názory formují naše produkty",
+                    buttonText: "Ohodnotit design", 
+                    modalTitle: "Jak se vám líbí nový design?",
                     options: ["Vůbec ne", "Ujde to", "Je to dobré", "Líbí se mi to", "Je to super"],
                     responses: [
-                        { text: "Díky za vyzkoušení! Na skutečných akcích to pomáhá sbírat upřímnou zpětnou vazbu.", link: null },
-                        { text: "Vaše hodnocení pomáhá! Demo ukazuje neutrální reakce.", link: null },
-                        { text: "Dobré hodnocení! Demonstruje sběr pozitivní zpětné vazby.", link: null },
-                        { text: "Skvěle, že se vám to líbí! Průzkum líbivosti funguje dobře.", link: null },
-                        { text: "Úžasné! Vyzkoušeli jste, jak funguje průzkum preferencí.", link: null }
+                        { text: "Děkujeme za upřímnou zpětnou vazbu. Každý názor nám pomáhá vylepšovat naše produkty.", link: null },
+                        { text: "Oceňujeme váš názor. Pracujeme na vylepšeních designu.", link: null },
+                        { text: "Děkujeme! Váš názor je pro nás důležitý.", link: null },
+                        { text: "Super! Těšíme se, až nový design spustíme.", link: null },
+                        { text: "Wow! Jste náš nový designový ambasador! 🏆", link: null }
                     ],
-                    statsProjectTotal: "Demo hlasů:",
-                    statsProjectBreakdown: "Hodnocení líbivosti (demo):",
-                    statsGlobalBreakdown: "Globální demo líbivosti:"
+                    statsProjectTotal: "Hodnocení designu:",
+                    statsProjectBreakdown: "Rozložení hodnocení:",
+                    statsGlobalBreakdown: "Průzkum líbivosti designu:"
                 },
                 // Placeholder pro ostatní typy
                 mood: {
