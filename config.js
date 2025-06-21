@@ -11,7 +11,7 @@ const config = {
     votingFrequency: 'daily',
 
     // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
-    activeQuestionSet: 'mood',
+    activeQuestionSet: 'understanding',
 
     // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
