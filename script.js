@@ -24,18 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const gdprLink = document.getElementById('gdpr-link');
     let currentLang = 'en', currentTranslations = {};
     const moods_svgs = [
-        // Hrozně (Terrible)
-        `<svg viewBox="0 0 24 24"><path fill="#f44336" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#ffcdd2" d="M12 14a4 4 0 00-3.8 2.8 1 1 0 00.9.9h5.8a1 1 0 00.9-.9A4 4 0 0012 14zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`,
-        // Špatně (Bad)
-        `<svg viewBox="0 0 24 24"><path fill="#ff9800" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#ffe0b2" d="M8.5 10a1.5 1.5 0 10-1.5 1.5A1.5 1.5 0 008.5 10zm7 0a1.5 1.5 0 10-1.5 1.5A1.5 1.5 0 0015.5 10zM15 15H9a1 1 0 000 2h6a1 1 0 000-2z"/></svg>`,
-        // Neutrálně (Neutral)
-        `<svg viewBox="0 0 24 24"><path fill="#9e9e9e" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#e0e0e0" d="M8 10a1 1 0 10-1-1 1 1 0 001 1zm8 0a1 1 0 10-1-1 1 1 0 001 1zM16 15H8v-2h8z"/></svg>`,
-        // Dobře (Good)
-        `<svg viewBox="0 0 24 24"><path fill="#4caf50" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#c8e6c9" d="M12 14a4 4 0 003.8-2.8 1 1 0 00-.9-.9h-5.8a1 1 0 00-.9.9A4 4 0 0012 14zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`,
-        // Skvěle (Great)
-        `<svg viewBox="0 0 24 24"><path fill="#2196f3" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"/><path fill="#bbdefb" d="M12 12.5a5.5 5.5 0 005.2-3.8 1 1 0 00-.9-1.2h-8.6a1 1 0 00-.9 1.2A5.5 5.5 0 0012 12.5zM9 11a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 009 11zm6 0a1.5 1.5 0 10-1.5-1.5A1.5 1.5 0 0015 11z"/></svg>`
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
     ];
-    const createBreakdownHtml = (votes) => votes.map((count, index) => `${moods_svgs[index]} ${count}`).join(' | ');
+    const createBreakdownHtml = (votes) => votes.map((count, index) => `<div>${moods_svgs[index]} ${count}</div>`).join('');
 
     if (projectStatsDocRef) {
         projectStatsDocRef.onSnapshot(doc => {
