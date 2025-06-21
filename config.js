@@ -1,8 +1,7 @@
 const config = {
-        // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
-    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
     projectId: "default-project-id", 
     votingFrequency: 'daily',
+    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
 
     backgroundImage: {
         filename: "pozadi.png", 
@@ -26,7 +25,8 @@ const config = {
             statsGlobalToday: "Today (global):", statsGlobalLastWeek: "Last 7 days (global):", statsGlobalBreakdown: "Moods (global):",
             footerText: 'Made with <span class="heart-icon">❤️</span> by <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "GDPR Consent",
-            gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊"
+            gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊",
+            scanMeText: "Scan the code and vote!"
         },
         cs: { 
             pageTitle: "Mini-aplikace: Měřič nálady", appTitle: "Měřič nálady", appSubtitle: "Pomozte nám sledovat aktuální náladu v komunitě!", 
@@ -43,10 +43,9 @@ const config = {
             statsGlobalToday: "Dnes (globálně):", statsGlobalLastWeek: "Posledních 7 dní (globálně):", statsGlobalBreakdown: "Nálady (globálně):",
             footerText: 'S <span class="heart-icon">❤️</span> vyrobilo <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "Souhlas s GDPR",
-            gdprAlertText: "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊"
-        },
-        sk: { /* doplňte překlady */ },
-        de: { /* doplňte překlady */ }
+            gdprAlertText: "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊",
+            scanMeText: "Naskenujte kód a hlasujte!"
+        }
     },
     
     // Tyto údaje získáte podle návodu v Části 2
