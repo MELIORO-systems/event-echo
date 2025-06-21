@@ -58,7 +58,7 @@ body.theme-sunset {
     --border-color: #ffccbc
 }
 
-/* Základní styly těla stránky */
+/* Základní styly */
 body {
     font-family: Inter, sans-serif;
     background-color: var(--background-color);
@@ -73,7 +73,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Hlavní kontejner aplikace */
+/* Hlavní kontejner */
 .app-container {
     background: var(--container-bg);
     border-radius: 20px;
@@ -195,7 +195,7 @@ body {
     color: var(--text-color)
 }
 
-/* Výběr nálady - OPRAVENO */
+/* Výběr nálady */
 .mood-selector {
     display: flex;
     justify-content: space-around;
@@ -219,7 +219,7 @@ body {
     transform: scale(1.15)
 }
 
-/* SVG ikony - OPRAVENO */
+/* SVG ikony */
 .mood svg {
     width: 50px;
     height: 50px;
@@ -227,18 +227,9 @@ body {
     margin: 0 auto;
 }
 
-/* Specifické styly pro SVG elementy */
 svg {
     overflow: visible;
     vertical-align: middle;
-}
-
-/* Zajistit správné zobrazení všech SVG cest a tvarů */
-.mood svg circle,
-.mood svg path,
-.mood svg line,
-.mood svg polygon {
-    vector-effect: non-scaling-stroke;
 }
 
 .mood-label {
@@ -296,7 +287,7 @@ svg {
     gap: 8px;
 }
 
-/* Rozložení statistik - OPRAVENO */
+/* Rozložení statistik */
 .stat-value.breakdown {
     font-size: 1rem;
     gap: 15px;
@@ -351,7 +342,7 @@ svg {
     transform: rotate(90deg);
 }
 
-/* Rozbalovací oblast - OPRAVENO */
+/* Rozbalovací oblast */
 .collapsible-area {
     max-height: 0;
     overflow: hidden;
@@ -493,17 +484,17 @@ svg {
     vertical-align: -0.1em;
 }
 
-#gdpr-link, .app-footer a {
+.app-footer a {
     color: var(--text-light);
     text-decoration: underline;
     cursor: pointer;
 }
 
-#gdpr-link:hover, .app-footer a:hover {
+.app-footer a:hover {
     color: var(--primary-color);
 }
 
-/* Kontejner pro globální rozložení - OPRAVENO */
+/* Kontejner pro globální rozložení */
 #global-breakdown-container {
     display: flex;
     flex-direction: column;
