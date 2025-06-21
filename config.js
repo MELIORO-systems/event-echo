@@ -1,11 +1,20 @@
 const config = {
-    projectId: "default-project-id", 
-    votingFrequency: 'daily',
+    // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
+    // Příklad: "https://uzivatel.github.io/mereni-nalady/"
     projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
 
+    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
+    // Příklad: "svatba-jana-a-eva-2025"
+    projectId: "default-project-id", 
+    
+    // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
+    votingFrequency: 'daily',
+
+    // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
-        filename: "pozadi.png", 
-        recommended_width: "500px", recommended_height: "750px",
+        filename: "pozadi.png", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
+        recommended_width: "500px",
+        recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
     },
 
