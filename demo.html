@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Echo - Demo všech variant</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .demo-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--card-color);
+        }
+        
+        .demo-card.mood { --card-color: #007bff; }
+        .demo-card.understanding { --card-color: #28a745; }
+        .demo-card.preference { --card-color: #ffc107; }
+        .demo-card.agreement { --card-color: #dc3545; }
+        
+        .demo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .demo-button {
+            display: inline-block;
+            background: var(--card-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            background: #f0f4f8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .features h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .features ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: #666;
+        }
+        
+        .features li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .demo-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>Event Echo Demo</h1>
+        <p class="subtitle">Vyzkoušejte všechny 4 varianty sběru zpětné vazby</p>
+        
+        <div class="features">
+            <h3>🚀 Demo funkce:</h3>
+            <ul>
+                <li>Hlasování je omezeno na 1x za hodinu</li>
+                <li>Každá varianta má vlastní demo projekt</li>
+                <li>Data se ukládají do skutečné databáze</li>
+                <li>Statistiky se aktualizují v reálném čase</li>
+            </ul>
+        </div>
+        
+        <div class="demo-grid">
+            <div class="demo-card mood">
+                <div class="demo-icon">😊</div>
+                <div class="demo-title">Měření nálady</div>
+                <div class="demo-description">
+                    Zjistěte aktuální náladu účastníků vaší akce. Ideální pro konference, školení a firemní meetingy.
+                </div>
+                <a href="index.html?config=mood" class="demo-button">Vyzkoušet demo</a>
+            </div>
+            
+            <div class="demo-card understanding">
+                <div class="demo-icon">🧠</div>
+                <div class="demo-title">Kontrola porozumění</div>
+                <div class="demo-description">
+                    Ověřte, jak dobře účastníci rozumí prezentovanému tématu. Perfektní pro školení a výuku.
+                </div>
+                <a href="index.html?config=understanding" class="demo-button">Vyzkoušet demo</a>
+            </div>
+            
+            <div class="demo-card preference">
+                <div class="demo-icon">⭐</div>
+                <div class="demo-title">Průzkum líbivosti</div>
+                <div class="demo-description">
+                    Získejte okamžitou zpětnou vazbu na produkty, nápady nebo prezentace. Skvělé pro produktové demo.
+                </div>
+                <a href="index.html?config=preference" class="demo-button">Vyzkoušet demo</a>
+            </div>
+            
+            <div class="demo-card agreement">
+                <div class="demo-icon">👍</div>
+                <div class="demo-title">Hlasování o souhlasu</div>
+                <div class="demo-description">
+                    Rychlé hlasování o návrzích a rozhodnutích. Ideální pro týmové porady a strategické meetingy.
+                </div>
+                <a href="index.html?config=agreement" class="demo-button">Vyzkoušet demo</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>
+                Pro vlastní nasazení navštivte <a href="https://github.com/melioro-systems/event-echo" target="_blank">GitHub</a> |
+                Vytvořilo <a href="https://melioro.cz" target="_blank">MELIORO Systems</a> |
+                <a href="https://eventecho.cz" target="_blank">eventecho.cz</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
