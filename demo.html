@@ -96,9 +96,23 @@
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s, box-shadow 0.2s;
+            width: 220px;
+            box-sizing: border-box;
         }
         
         .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .demo-button-secondary {
+            background: transparent;
+            color: var(--card-color);
+            border: 2px solid var(--card-color);
+            margin-top: 0.5rem;
+        }
+        
+        .demo-button-secondary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
@@ -173,38 +187,42 @@
         <div class="demo-grid">
             <div class="demo-card mood">
                 <div class="demo-icon">😊</div>
-                <div class="demo-title">Měření nálady</div>
+                <div class="demo-title">Jakou máte náladu?</div>
                 <div class="demo-description">
                     Zjistěte aktuální náladu účastníků vaší akce. Ideální pro konference, školení a firemní meetingy.
                 </div>
-                <a href="index.html?config=mood" class="demo-button">Vyzkoušet demo</a>
+                <a href="index.html?config=mood" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                <a href="zobraz-kod.html?config=mood" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
             </div>
             
             <div class="demo-card understanding">
                 <div class="demo-icon">🧠</div>
-                <div class="demo-title">Kontrola porozumění</div>
+                <div class="demo-title">Rozuměli jste tomu?</div>
                 <div class="demo-description">
                     Ověřte, jak dobře účastníci rozumí prezentovanému tématu. Perfektní pro školení a výuku.
                 </div>
-                <a href="index.html?config=understanding" class="demo-button">Vyzkoušet demo</a>
+                <a href="index.html?config=understanding" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                <a href="zobraz-kod.html?config=understanding" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
             </div>
             
             <div class="demo-card preference">
                 <div class="demo-icon">⭐</div>
-                <div class="demo-title">Průzkum líbivosti</div>
+                <div class="demo-title">Jak se vám to líbilo?</div>
                 <div class="demo-description">
                     Získejte okamžitou zpětnou vazbu na produkty, nápady nebo prezentace. Skvělé pro produktové demo.
                 </div>
-                <a href="index.html?config=preference" class="demo-button">Vyzkoušet demo</a>
+                <a href="index.html?config=preference" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                <a href="zobraz-kod.html?config=preference" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
             </div>
             
             <div class="demo-card agreement">
                 <div class="demo-icon">👍</div>
-                <div class="demo-title">Hlasování o souhlasu</div>
+                <div class="demo-title">Souhlasíte s tím?</div>
                 <div class="demo-description">
                     Rychlé hlasování o návrzích a rozhodnutích. Ideální pro týmové porady a strategické meetingy.
                 </div>
-                <a href="index.html?config=agreement" class="demo-button">Vyzkoušet demo</a>
+                <a href="index.html?config=agreement" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                <a href="zobraz-kod.html?config=agreement" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
             </div>
         </div>
         
