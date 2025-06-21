@@ -1,17 +1,15 @@
 const config = {
     // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
-    // Příklad: "https://uzivatel.github.io/event-echo/"
-    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
-
+    projectUrl: "https://melioro-systems.github.io/event-echo/",
+    
     // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
-    // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
-    projectId: "default-project-id", 
+    projectId: "event-echo-feedback-2025",
     
     // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
-    votingFrequency: 'hourly',
+    votingFrequency: 'daily',
 
     // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
-    activeQuestionSet: 'agreement',
+    activeQuestionSet: 'preference',
 
     // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
@@ -23,7 +21,7 @@ const config = {
 
     translations: {
         en: { 
-            pageTitle: "Event Echo", 
+            pageTitle: "Event Echo - Feedback", 
             settingsTitle: "Settings & Global Stats",
             thankYouMessage: "Thank you for your vote!", 
             alreadyVotedMessage: "You have already voted. Please try again later.",
@@ -37,59 +35,72 @@ const config = {
             scanMeText: "Scan the code and vote!",
 
             questionSets: {
-                mood: {
-                    appTitle: "Mood Meter", appSubtitle: "Help us track the current mood!",
-                    buttonText: "How are you feeling?", modalTitle: "How are you feeling right now?",
-                    options: ["Terrible", "Bad", "Neutral", "Good", "Great"],
-                    responses: [
-                        { text: "We're sorry to hear that. Maybe some jokes will cheer you up?", link: { text: "Show me jokes", url: "https://www.rd.com/list/funniest-jokes-of-all-time/" } },
-                        { text: "Hope things get better soon!", link: null }, { text: "Thanks for your feedback.", link: null },
-                        { text: "Glad to hear that!", link: null }, { text: "Awesome! Keep up the great mood.", link: null }
-                    ],
-                    statsProjectTotal: "Votes in this project:",
-                    statsProjectBreakdown: "Mood distribution:",
-                    statsGlobalBreakdown: "Global Mood Distribution:"
-                },
-                understanding: {
-                    appTitle: "Understanding Check", appSubtitle: "Let us know how well you understand the topic.",
-                    buttonText: "How well do you understand?", modalTitle: "How well do you understand the topic?",
-                    options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
-                    responses: [
-                        { text: "No worries! Don't hesitate to ask questions.", link: null }, { text: "Okay, we'll try to clarify the main points.", link: null },
-                        { text: "Great, glad you're on board.", link: null }, { text: "Excellent!", link: null }, { text: "Perfect! You're a star.", link: null }
-                    ],
-                    statsProjectTotal: "Responses:",
-                    statsProjectBreakdown: "Understanding level:",
-                    statsGlobalBreakdown: "Global Understanding Level:"
-                },
                 preference: {
-                    appTitle: "Preference Poll", appSubtitle: "Let us know how much you like this.",
-                    buttonText: "How much do you like this?", modalTitle: "How much do you like this?",
+                    appTitle: "Event Echo - Feedback", 
+                    appSubtitle: "How do you like our live feedback collection app?",
+                    buttonText: "Rate the app", 
+                    modalTitle: "How do you rate Event Echo app?",
                     options: ["Don't like it", "It's okay", "It's good", "I like it", "I love it"],
                     responses: [
-                        { text: "Thank you for your honest feedback.", link: null }, { text: "Thanks, we appreciate the input.", link: null },
-                        { text: "Glad you think it's good!", link: null }, { text: "Great to hear you like it!", link: null }, { text: "Awesome! We're thrilled you love it.", link: null }
+                        { text: "Thank you for your honesty. Maybe you'll like our other solutions.", link: { text: "melioro.cz", url: "https://melioro.cz" } },
+                        { text: "Thanks for the feedback. We're still working on the app, check back later, hopefully it will be better. Meanwhile, check out our other products.", link: { text: "melioro.cz", url: "https://melioro.cz" } },
+                        { text: "Thank you! We're glad you like Event Echo.", link: null },
+                        { text: "Great! If you want Event Echo for your event, let us know.", link: { text: "Contact", url: "mailto:pavel@melioro.cz" } },
+                        { text: "Wow, thank you! 🎉 Want Event Echo for your own event?", link: { text: "I'm interested", url: "mailto:pavel@melioro.cz?subject=I'm interested in Event Echo" } }
                     ],
-                    statsProjectTotal: "Votes:",
-                    statsProjectBreakdown: "Preference distribution:",
-                    statsGlobalBreakdown: "Global Preference Distribution:"
+                    statsProjectTotal: "App ratings:",
+                    statsProjectBreakdown: "Rating distribution:",
+                    statsGlobalBreakdown: "Global App Ratings:"
+                },
+                mood: {
+                    appTitle: "Not Available", appSubtitle: "Please use the main app for mood tracking",
+                    buttonText: "Not Available", modalTitle: "Not Available",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    responses: [
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null }
+                    ],
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
+                },
+                understanding: {
+                    appTitle: "Not Available", appSubtitle: "Please use the main app for understanding check",
+                    buttonText: "Not Available", modalTitle: "Not Available",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    responses: [
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null }
+                    ],
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
                 },
                 agreement: {
-                    appTitle: "Agreement Vote", appSubtitle: "Please share your level of agreement with the proposal.",
-                    buttonText: "Do you agree?", modalTitle: "What is your level of agreement?",
-                    options: ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+                    appTitle: "Not Available", appSubtitle: "Please use the main app for agreement voting",
+                    buttonText: "Not Available", modalTitle: "Not Available",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
                     responses: [
-                        { text: "Understood, thank you for your perspective.", link: null }, { text: "Thank you for sharing your concerns.", link: null },
-                        { text: "Thank you for your input.", link: null }, { text: "Great, glad we are on the same page.", link: null }, { text: "Excellent! Thank you for your strong support.", link: null }
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null },
+                        { text: "This feature is not available in this configuration", link: null }
                     ],
-                    statsProjectTotal: "Votes:",
-                    statsProjectBreakdown: "Agreement distribution:",
-                    statsGlobalBreakdown: "Global Agreement Distribution:"
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
                 }
             }
         },
         cs: { 
-            pageTitle: "Event Echo", 
+            pageTitle: "Event Echo - Zpětná vazba", 
             settingsTitle: "Nastavení & Globální statistiky",
             thankYouMessage: "Děkujeme za hlas!", 
             alreadyVotedMessage: "Již jste hlasoval(a). Zkuste to prosím později.",
@@ -103,60 +114,73 @@ const config = {
             scanMeText: "Naskenujte kód a hlasujte!",
 
             questionSets: {
-                mood: {
-                    appTitle: "Měřič nálady", appSubtitle: "Pomozte nám sledovat aktuální náladu!",
-                    buttonText: "Jak se teď cítíš?", modalTitle: "Jak se teď cítíš?",
-                    options: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"],
-                    responses: [
-                        { text: "To nás mrzí. Třeba vám zvedne náladu pár vtipů?", link: { text: "Ukaž vtipy", url: "https://www.vtipnicek.cz/nejlepsi-vtipy" } },
-                        { text: "Snad bude brzy lépe!", link: null }, { text: "Děkujeme za zpětnou vazbu.", link: null },
-                        { text: "To rádi slyšíme!", link: null }, { text: "Paráda! Udržte si skvělou náladu.", link: null }
-                    ],
-                    statsProjectTotal: "Hlasů v tomto projektu:",
-                    statsProjectBreakdown: "Nálady v tomto projektu:",
-                    statsGlobalBreakdown: "Globální rozložení nálad:"
-                },
-                understanding: {
-                    appTitle: "Kontrola porozumění", appSubtitle: "Dejte nám vědět, jak dobře tématu rozumíte.",
-                    buttonText: "Jak tomu rozumíte?", modalTitle: "Jak dobře rozumíte tématu?",
-                    options: ["Vůbec", "Trochu", "Dobře", "Většinou", "Perfektně"],
-                    responses: [
-                        { text: "Žádný strach! Neváhejte se ptát.", link: null }, { text: "Dobře, zkusíme si hlavní body ujasnit.", link: null },
-                        { text: "Výborně, jsme rádi, že jste v obraze.", link: null }, { text: "Excelentní!", link: null }, { text: "Perfektní! Jste hvězda.", link: null }
-                    ],
-                    statsProjectTotal: "Odpovědí:",
-                    statsProjectBreakdown: "Úroveň porozumění:",
-                    statsGlobalBreakdown: "Globální úroveň porozumění:"
-                },
                 preference: {
-                    appTitle: "Průzkum líbivosti", appSubtitle: "Dejte nám vědět, jak se vám to líbí.",
-                    buttonText: "Jak se vám to líbí?", modalTitle: "Jak moc se vám to líbí?",
+                    appTitle: "Event Echo - Zpětná vazba", 
+                    appSubtitle: "Jak se vám líbí naše aplikace pro sběr zpětné vazby?",
+                    buttonText: "Ohodnotit aplikaci", 
+                    modalTitle: "Jak hodnotíte aplikaci Event Echo?",
                     options: ["Vůbec ne", "Ujde to", "Je to dobré", "Líbí se mi to", "Je to super"],
                     responses: [
-                        { text: "Děkujeme za upřímnou zpětnou vazbu.", link: null }, { text: "Díky, vážíme si vašeho názoru.", link: null },
-                        { text: "Jsme rádi, že si myslíte, že je to dobré!", link: null }, { text: "Skvělé, těší nás to!", link: null }, { text: "Paráda! Jsme nadšeni, že se vám to tak líbí.", link: null }
+                        { text: "Děkujeme za upřímnost. Třeba se vám budou líbit naše jiná řešení.", link: { text: "melioro.cz", url: "https://melioro.cz" } },
+                        { text: "Díky za feedback. Stále na aplikaci pracujeme, tak se podívejte za nějaký čas, snad to bude lepší. Zatím se podívejte na naše jiné produkty.", link: { text: "melioro.cz", url: "https://melioro.cz" } },
+                        { text: "Děkujeme! Těší nás, že se vám Event Echo líbí.", link: null },
+                        { text: "Super! Pokud chcete Event Echo pro svou akci, ozvěte se.", link: { text: "Kontaktovat", url: "mailto:pavel@melioro.cz" } },
+                        { text: "Wow, děkujeme! 🎉 Chcete Event Echo na vlastní akci?", link: { text: "Mám zájem", url: "mailto:pavel@melioro.cz?subject=Mám zájem o Event Echo" } }
                     ],
-                    statsProjectTotal: "Hlasů:",
-                    statsProjectBreakdown: "Rozložení líbivosti:",
-                    statsGlobalBreakdown: "Globální rozložení líbivosti:"
+                    statsProjectTotal: "Hodnocení aplikace:",
+                    statsProjectBreakdown: "Rozložení hodnocení:",
+                    statsGlobalBreakdown: "Globální hodnocení aplikace:"
+                },
+                mood: {
+                    appTitle: "Není dostupné", appSubtitle: "Pro měření nálady použijte hlavní aplikaci",
+                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    responses: [
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
+                    ],
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
+                },
+                understanding: {
+                    appTitle: "Není dostupné", appSubtitle: "Pro kontrolu porozumění použijte hlavní aplikaci",
+                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    responses: [
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
+                    ],
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
                 },
                 agreement: {
-                    appTitle: "Hlasování o souhlasu", appSubtitle: "Prosím, vyjádřete míru svého souhlasu s návrhem.",
-                    buttonText: "Souhlasíte?", modalTitle: "Jaká je vaše míra souhlasu?",
-                    options: ["Zásadně nesouhlasím", "Nesouhlasím", "Neutrální", "Souhlasím", "Zcela souhlasím"],
+                    appTitle: "Není dostupné", appSubtitle: "Pro hlasování o souhlasu použijte hlavní aplikaci",
+                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
+                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
                     responses: [
-                        { text: "Rozumíme, děkujeme za vaši perspektivu.", link: null }, { text: "Děkujeme, že jste sdílel(a) své obavy.", link: null },
-                        { text: "Děkujeme za váš názor.", link: null }, { text: "Skvělé, jsme rádi, že se shodneme.", link: null }, { text: "Excelentní! Děkujeme za vaši silnou podporu.", link: null }
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
+                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
                     ],
-                    statsProjectTotal: "Hlasů:",
-                    statsProjectBreakdown: "Rozložení souhlasu:",
-                    statsGlobalBreakdown: "Globální rozložení souhlasu:"
+                    statsProjectTotal: "N/A",
+                    statsProjectBreakdown: "N/A",
+                    statsGlobalBreakdown: "N/A"
                 }
             }
         }
     },
     
-    // Tyto údaje získáte podle návodu v Části 2
+    // Demo Firebase konfigurace
     firebaseConfig: {
         apiKey: "AIzaSyBZVkwEynmCEFaxBv2b2B9FSqGYu4OLjUY",
         authDomain: "mereni-nalady-web.firebaseapp.com",
