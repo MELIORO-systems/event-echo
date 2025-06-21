@@ -25,13 +25,12 @@ body{font-family:Inter,sans-serif;background-color:var(--background-color);color
 .mood-label{font-size:.8rem;color:var(--text-light);margin-top:.5rem}
 .project-stats-section, .global-stats-section{margin-top:2rem;text-align:left;padding-top:2rem; border-top: 1px solid var(--border-color);}
 .project-stats-section { padding-top: 0; border-top: none; margin-top: 1.5rem; }
-.stat-item{display:flex;justify-content:space-between;align-items:center;padding:.8rem;border-radius:8px;transition:background-color .2s}
-.stat-item:nth-child(odd){background-color:rgba(0,0,0,.02)}
+.stat-item{display:flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1rem 0.5rem; border-radius:8px;transition:background-color .2s}
 .stat-item:hover{background-color:var(--light-primary)}
-.stat-label{font-weight:500; font-size: 0.9rem;}
-.stat-value{font-weight:700;background-color:var(--primary-color);color:#fff;padding:.2rem .6rem;border-radius:5px;font-size:.9rem;transition:background-color .3s; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px;}
-.stat-value.breakdown{font-size:.8rem;background-color:transparent!important;color:var(--text-color)!important;font-weight:500}
-.stat-value.breakdown svg { width: 16px; height: 16px; }
+.stat-label{font-weight:500; font-size: 0.9rem; color: var(--text-light);}
+.stat-value{font-weight:700;background-color:transparent;color:var(--text-color);padding:0;font-size:1.2rem; display: inline-flex; align-items: center; gap: 8px;}
+.stat-value.breakdown{font-size:1rem;gap:12px;}
+.stat-value.breakdown svg { width: 24px; height: 24px; }
 #settings-toggle-btn { background: none; border: none; color: var(--text-light); cursor: pointer; padding: 8px; margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; border-radius: 8px; transition: color 0.2s, background-color 0.2s; }
 #settings-toggle-btn:hover { background-color: var(--background-color); color: var(--text-color); }
 #settings-toggle-btn svg { width: 18px; height: 18px; transition: transform 0.4s ease; }
@@ -39,7 +38,7 @@ body{font-family:Inter,sans-serif;background-color:var(--background-color);color
 .collapsible-area { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.4s ease-in-out; }
 .collapsible-area.open { max-height: 500px; opacity: 1; padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid var(--border-color); }
 .global-stats-section { margin-top: 0; padding-top: 0; border-top: none; margin-bottom: 1.5rem;}
-.global-stats-section h2.stats-title { margin-top: 0; }
+.global-stats-section h2.stats-title { margin-top: 0; margin-bottom: 1rem; }
 .language-switcher { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; }
 .language-switcher button { background-color: var(--background-color); border: 1px solid var(--border-color); padding: 5px 10px; cursor: pointer; font-weight: 600; color: var(--text-light); border-radius: 6px; transition: all 0.2s ease; }
 .language-switcher button:hover { color: var(--text-color); border-color: var(--primary-color); }
@@ -52,7 +51,7 @@ body{font-family:Inter,sans-serif;background-color:var(--background-color);color
 .response-button { display: inline-block; background-color: var(--primary-color); color: white; text-decoration: none; padding: 0.8rem 1.2rem; border-radius: 8px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
 .response-button:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .app-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-light); text-align: center; transition: border-color 0.3s, color 0.3s; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.app-footer span { display: flex; align-items: center; gap: 0.3em; }
+.app-footer span, .app-footer a { display: flex; align-items: center; gap: 0.3em; }
 .heart-icon { color: #e53935; display: inline-block; vertical-align: -0.1em; }
 #gdpr-link, .app-footer a { color: var(--text-light); text-decoration: underline; cursor: pointer; }
 #gdpr-link:hover, .app-footer a:hover { color: var(--primary-color); }
