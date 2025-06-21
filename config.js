@@ -1,7 +1,7 @@
 const config = {
     // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
     // Příklad: "https://uzivatel.github.io/event-echo/"
-    projectUrl: "", 
+    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
 
     // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
     // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
