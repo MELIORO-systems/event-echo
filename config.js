@@ -1,21 +1,11 @@
 const config = {
-    // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
-    // Příklad: "https://uzivatel.github.io/event-echo/"
-    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
-
-    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
-    // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
+    projectUrl: "", 
     projectId: "default-project-id", 
-    
-    // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
     votingFrequency: 'daily',
+    activeQuestionSet: 'mood', 
 
-    // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
-    activeQuestionSet: 'agreement',
-
-    // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
-        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
+        filename: "https://melioro-systems.github.io/mereni-nalady-web/", 
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
@@ -31,7 +21,6 @@ const config = {
             statsGlobalTotal: "Total votes (global):", 
             statsGlobalToday: "Today (global):", 
             statsGlobalLastWeek: "Last 7 days (global):", 
-            statsGlobalBreakdown: "Overall distribution (global):",
             footerText: 'Made with <span class="heart-icon">❤️</span> by <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "GDPR Consent",
             gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊",
@@ -48,18 +37,20 @@ const config = {
                         { text: "Glad to hear that!", link: null }, { text: "Awesome! Keep up the great mood.", link: null }
                     ],
                     statsProjectTotal: "Votes in this project:",
-                    statsProjectBreakdown: "Mood distribution:"
+                    statsProjectBreakdown: "Mood distribution:",
+                    statsGlobalBreakdown: "Global Mood Distribution:"
                 },
                 understanding: {
                     appTitle: "Understanding Check", appSubtitle: "Let us know how well you understand the topic.",
                     buttonText: "How well do you understand?", modalTitle: "How well do you understand the topic?",
-                    options: ["Not at all", "A little", "Mostly", "Well", "Perfectly"],
+                    options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
                     responses: [
                         { text: "No worries! Don't hesitate to ask questions.", link: null }, { text: "Okay, we'll try to clarify the main points.", link: null },
                         { text: "Great, glad you're on board.", link: null }, { text: "Excellent!", link: null }, { text: "Perfect! You're a star.", link: null }
                     ],
                     statsProjectTotal: "Responses:",
-                    statsProjectBreakdown: "Understanding level:"
+                    statsProjectBreakdown: "Understanding level:",
+                    statsGlobalBreakdown: "Global Understanding Level:"
                 },
                 preference: {
                     appTitle: "Preference Poll", appSubtitle: "Let us know how much you like this.",
@@ -70,7 +61,8 @@ const config = {
                         { text: "Glad you think it's good!", link: null }, { text: "Great to hear you like it!", link: null }, { text: "Awesome! We're thrilled you love it.", link: null }
                     ],
                     statsProjectTotal: "Votes:",
-                    statsProjectBreakdown: "Preference distribution:"
+                    statsProjectBreakdown: "Preference distribution:",
+                    statsGlobalBreakdown: "Global Preference Distribution:"
                 },
                 agreement: {
                     appTitle: "Agreement Vote", appSubtitle: "Please share your level of agreement with the proposal.",
@@ -81,7 +73,8 @@ const config = {
                         { text: "Thank you for your input.", link: null }, { text: "Great, glad we are on the same page.", link: null }, { text: "Excellent! Thank you for your strong support.", link: null }
                     ],
                     statsProjectTotal: "Votes:",
-                    statsProjectBreakdown: "Agreement distribution:"
+                    statsProjectBreakdown: "Agreement distribution:",
+                    statsGlobalBreakdown: "Global Agreement Distribution:"
                 }
             }
         },
@@ -93,8 +86,7 @@ const config = {
             statsGlobalTitle: "Globální statistiky (všechny projekty)", 
             statsGlobalTotal: "Celkem hlasů (globálně):", 
             statsGlobalToday: "Dnes (globálně):", 
-            statsGlobalLastWeek: "Posledních 7 dní (globálně):", 
-            statsGlobalBreakdown: "Celkové rozložení (globálně):",
+            statsGlobalLastWeek: "Posledních 7 dní (globálně):",
             footerText: 'S <span class="heart-icon">❤️</span> vyrobilo <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "Souhlas s GDPR",
             gdprAlertText: "Beru na vědomí, že tato mini-aplikace neukládá ani nepracuje s žádnými osobními údaji. 😊",
@@ -111,18 +103,20 @@ const config = {
                         { text: "To rádi slyšíme!", link: null }, { text: "Paráda! Udržte si skvělou náladu.", link: null }
                     ],
                     statsProjectTotal: "Hlasů v tomto projektu:",
-                    statsProjectBreakdown: "Nálady v tomto projektu:"
+                    statsProjectBreakdown: "Nálady v tomto projektu:",
+                    statsGlobalBreakdown: "Globální rozložení nálad:"
                 },
                 understanding: {
                     appTitle: "Kontrola porozumění", appSubtitle: "Dejte nám vědět, jak dobře tématu rozumíte.",
                     buttonText: "Jak tomu rozumíte?", modalTitle: "Jak dobře rozumíte tématu?",
-                    options: ["Vůbec", "Trochu", "Většinou", "Dobře", "Perfektně"],
+                    options: ["Vůbec", "Trochu", "Dobře", "Většinou", "Perfektně"],
                     responses: [
                         { text: "Žádný strach! Neváhejte se ptát.", link: null }, { text: "Dobře, zkusíme si hlavní body ujasnit.", link: null },
                         { text: "Výborně, jsme rádi, že jste v obraze.", link: null }, { text: "Excelentní!", link: null }, { text: "Perfektní! Jste hvězda.", link: null }
                     ],
                     statsProjectTotal: "Odpovědí:",
-                    statsProjectBreakdown: "Úroveň porozumění:"
+                    statsProjectBreakdown: "Úroveň porozumění:",
+                    statsGlobalBreakdown: "Globální úroveň porozumění:"
                 },
                 preference: {
                     appTitle: "Průzkum líbivosti", appSubtitle: "Dejte nám vědět, jak se vám to líbí.",
@@ -133,7 +127,8 @@ const config = {
                         { text: "Jsme rádi, že si myslíte, že je to dobré!", link: null }, { text: "Skvělé, těší nás to!", link: null }, { text: "Paráda! Jsme nadšeni, že se vám to tak líbí.", link: null }
                     ],
                     statsProjectTotal: "Hlasů:",
-                    statsProjectBreakdown: "Rozložení líbivosti:"
+                    statsProjectBreakdown: "Rozložení líbivosti:",
+                    statsGlobalBreakdown: "Globální rozložení líbivosti:"
                 },
                 agreement: {
                     appTitle: "Hlasování o souhlasu", appSubtitle: "Prosím, vyjádřete míru svého souhlasu s návrhem.",
@@ -144,7 +139,8 @@ const config = {
                         { text: "Děkujeme za váš názor.", link: null }, { text: "Skvělé, jsme rádi, že se shodneme.", link: null }, { text: "Excelentní! Děkujeme za vaši silnou podporu.", link: null }
                     ],
                     statsProjectTotal: "Hlasů:",
-                    statsProjectBreakdown: "Rozložení souhlasu:"
+                    statsProjectBreakdown: "Rozložení souhlasu:",
+                    statsGlobalBreakdown: "Globální rozložení souhlasu:"
                 }
             }
         }
