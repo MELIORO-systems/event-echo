@@ -69,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
         ],
         understanding: [
-             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
-             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffe0b2" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
+             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
+             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
-             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#c8e6c9" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
-             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#bbdefb" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`
+             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`,
+             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path></svg>`
         ],
         preference: [
              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
@@ -91,9 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
     
+    // Vylepšená funkce pro vytvoření HTML s ikonami
     const createBreakdownHtml = (votes, setName) => {
         const icons = iconSets[setName] || [];
-        return votes.map((count, index) => `<div>${icons[index] || ''} ${count}</div>`).join('');
+        return votes.map((count, index) => {
+            const icon = icons[index] || '';
+            return `<div>${icon} <span>${count}</span></div>`;
+        }).join('');
     };
 
     const applyTranslations = (lang) => {
@@ -116,16 +120,24 @@ document.addEventListener('DOMContentLoaded', () => {
         console.groupEnd();
     };
 
+    // Vylepšená funkce pro vykreslení možností
     const renderOptions = () => {
         console.log(`🎨 Rendering options for: ${config.activeQuestionSet}`);
         moodSelectorContainer.innerHTML = "";
         const options = currentTranslations.options || [];
         const icons = iconSets[config.activeQuestionSet] || iconSets.mood;
         console.log(`Creating ${options.length} option buttons`);
+        
         options.forEach((label, index) => {
             const moodEl = document.createElement('div');
             moodEl.className = 'mood';
-            moodEl.innerHTML = `${icons[index]}<div class="mood-label">${label}</div>`;
+            
+            // Vložit SVG přímo jako innerHTML
+            moodEl.innerHTML = `
+                ${icons[index]}
+                <div class="mood-label">${label}</div>
+            `;
+            
             moodEl.addEventListener('click', () => handleMoodClick(index));
             moodSelectorContainer.appendChild(moodEl);
         });
