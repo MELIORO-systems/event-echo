@@ -17,11 +17,14 @@
 9. [Typy otázek a jejich použití](#typy-otázek-a-jejich-použití)
 10. [Přizpůsobení vzhledu](#přizpůsobení-vzhledu)
 11. [Správa více událostí](#správa-více-událostí)
-12. [Jak aplikace funguje](#jak-aplikace-funguje)
-13. [Řešení problémů](#řešení-problémů)
-14. [Bezpečnost a GDPR](#bezpečnost-a-gdpr)
-15. [Tipy pro použití na akcích](#tipy-pro-použití-na-akcích)
-16. [Často kladené otázky](#často-kladené-otázky)
+12. [Prezentační režim](#prezentační-režim)
+13. [Struktura databáze](#struktura-databáze)
+14. [Jak aplikace funguje](#jak-aplikace-funguje)
+15. [Řešení problémů](#řešení-problémů)
+16. [Bezpečnost a GDPR](#bezpečnost-a-gdpr)
+17. [Tipy pro použití na akcích](#tipy-pro-použití-na-akcích)
+18. [Změny a aktualizace](#změny-a-aktualizace)
+19. [Často kladené otázky](#často-kladené-otázky)
 
 ## Co je Event Echo?
 
@@ -374,7 +377,77 @@ Pro každou událost vytvořte kopii všech souborů v jiné složce:
 /konference-2025/
 ```
 
-## Jak aplikace funguje
+## Prezentační režim
+
+### Co je prezentační režim?
+
+Prezentační režim je speciální stránka (`zobraz-kod.html`) určená pro promítání na velkoplošnou obrazovku během události. Zobrazuje:
+- Živé statistiky hlasování
+- QR kód pro snadné připojení účastníků
+- Velké, čitelné číslice a grafy
+
+### Soubory prezentačního režimu
+
+```
+zobraz-kod.html     # HTML stránka pro promítání
+zobraz-kod.css      # Styly pro prezentační režim
+zobraz-kod.js       # Logika pro načítání dat a generování QR kódu
+```
+
+### Jak používat prezentační režim
+
+1. **Nastavte projectUrl v config.js**
+   ```javascript
+   projectUrl: "https://vase-domena.cz/event-echo/",
+   ```
+
+2. **Otevřete prezentační stránku**
+   ```
+   https://vase-domena.cz/event-echo/zobraz-kod.html
+   ```
+
+3. **Promítněte na plátno**
+   - Použijte fullscreen režim (F11)
+   - QR kód se automaticky vygeneruje
+   - Statistiky se aktualizují v reálném čase
+
+### Rozdíly oproti hlavní aplikaci
+
+- Bez možnosti hlasování
+- Větší fonty a ikony
+- Automaticky generovaný QR kód
+- Minimalistický design pro projekci
+
+## Struktura databáze
+
+### Firebase Firestore struktura
+
+```javascript
+moodStats (kolekce)
+└── [projectId] (dokument)
+    ├── votes (objekt)
+    │   ├── mood: [0, 0, 0, 0, 0]         // 5 hodnot pro 5 možností
+    │   ├── understanding: [0, 0, 0, 0, 0]
+    │   ├── preference: [0, 0, 0, 0, 0]
+    │   └── agreement: [0, 0, 0, 0, 0]
+    └── history (pole)
+        └── [{
+            voteType: "mood",
+            voteIndex: 3,
+            timestamp: Timestamp
+        }, ...]
+```
+
+### Vysvětlení struktury
+
+- **votes**: Obsahuje součty hlasů pro každý typ otázek
+- **history**: Seznam všech jednotlivých hlasů s časovými razítky
+- **Indexy v polích**: 0=nejhorší, 4=nejlepší hodnocení
+
+### Limity
+
+- Historie je omezena na 1000 posledních hlasů
+- Po překročení se nejstarší záznamy automaticky mažou
 
 ### Tok dat
 
@@ -416,6 +489,36 @@ Pro každou událost vytvořte kopii všech souborů v jiné složce:
 1. Ověřte, že Firebase projekt běží
 2. Zkontrolujte, zda nevypršel testovací režim (30 dnů)
 3. Refreshněte stránku (Ctrl+F5)
+
+### Globální statistiky zobrazují 0 nebo chybí některé typy
+
+**Problém:** V globálních statistikách se nezobrazují všechny 4 typy zpětné vazby nebo celkový počet hlasů ukazuje 0.
+
+**Řešení:** 
+1. Ujistěte se, že v databázi existují data pro všechny typy otázek
+2. Zkontrolujte, že struktura dat v databázi odpovídá očekávanému formátu:
+   ```javascript
+   {
+     votes: {
+       mood: [0, 0, 0, 0, 0],
+       understanding: [0, 0, 0, 0, 0],
+       preference: [0, 0, 0, 0, 0],
+       agreement: [0, 0, 0, 0, 0]
+     }
+   }
+   ```
+3. Při prvním spuštění může být potřeba provést alespoň jedno hlasování, aby se struktura vytvořila
+4. Pokud máte starou verzi dat, smažte dokument a nechte aplikaci vytvořit nový
+
+### SVG ikony se nezobrazují správně
+
+**Problém:** Místo ikon se zobrazují prázdné čtverce nebo nic.
+
+**Řešení:**
+1. Vyčistěte cache prohlížeče (Ctrl+Shift+Delete)
+2. Ověřte, že máte nejnovější verzi souborů
+3. Zkontrolujte konzoli pro chybové hlášky
+4. Ujistěte se, že prohlížeč podporuje SVG (všechny moderní prohlížeče ano)
 
 ## Bezpečnost a GDPR
 
@@ -473,28 +576,74 @@ service cloud.firestore {
 2. **Analyzujte trendy** - kdy byla nejlepší nálada?
 3. **Sdílejte výsledky** - s organizátory/účastníky
 
+## Změny a aktualizace
+
+### Jak aktualizovat aplikaci
+
+1. **Stáhněte nejnovější verzi** z GitHubu
+2. **Zálohujte config.js** - obsahuje vaše nastavení
+3. **Nahrajte nové soubory** kromě config.js
+4. **Vyčistěte cache** prohlížeče (Ctrl+F5)
+
+### Historie změn
+
+#### Verze 1.0.0 (Leden 2025)
+- Základní funkcionalita
+- 4 typy otázek
+- Real-time statistiky
+- Prezentační režim
+- Podpora CZ/EN
+
+### Plánované funkce
+
+- Export dat do CSV
+- Více jazyků
+- Vlastní otázky
+- Grafické reporty
+
 ## Často kladené otázky
 
 **Q: Kolik hlasů zvládne aplikace?**
 A: Firebase free tier: 50 000 čtení a 20 000 zápisů denně. To stačí na tisíce hlasujících.
 
 **Q: Lze exportovat data?**
-A: Ano, z Firebase Console můžete data exportovat do JSON.
+A: Ano, z Firebase Console můžete data exportovat do JSON. V budoucnu plánujeme přímý export do CSV.
 
 **Q: Funguje offline?**
-A: Ne, aplikace vyžaduje internetové připojení.
+A: Ne, aplikace vyžaduje internetové připojení pro ukládání a zobrazování dat v reálném čase.
 
 **Q: Lze přidat více jazyků?**
-A: Ano, stačí přidat nový jazyk do sekce `translations` v config.js.
+A: Ano, stačí přidat nový jazyk do sekce `translations` v config.js podle vzoru existujících jazyků.
 
 **Q: Jak dlouho se data uchovávají?**
-A: Dokud je nesmazete nebo nezrušíte Firebase projekt.
+A: Dokud je nesmazete nebo nezrušíte Firebase projekt. Firebase nemá automatické mazání dat.
 
 **Q: Je to zdarma?**
-A: Ano, pro běžné použití. Firebase má velkorysé free limity.
+A: Ano, pro běžné použití. Firebase má velkorysé free limity (50k čtení/den).
+
+**Q: Mohu použít vlastní ikony?**
+A: Ano, ikony jsou definovány jako SVG kód v script.js v objektu `iconSets`.
+
+**Q: Lze změnit počet možností (např. ze 5 na 3)?**
+A: Ne, aplikace je navržena pro přesně 5 možností. Změna by vyžadovala úpravu kódu.
+
+**Q: Funguje na mobilech?**
+A: Ano, aplikace je plně responzivní a optimalizovaná pro mobilní zařízení.
+
+**Q: Lze omezit hlasování na určité IP adresy?**
+A: Ne, aplikace nesbírá IP adresy. Omezení je pouze časové (daily/hourly/once).
+
+## Podpora a kontakt
+
+- **Dokumentace**: Tento README soubor
+- **Problémy**: [GitHub Issues](https://github.com/melioro-systems/event-echo/issues)
+- **Web**: [eventecho.cz](https://eventecho.cz)
+- **Vývojář**: [MELIORO Systems](https://melioro.cz)
 
 ---
 
-💡 **Potřebujete pomoc?** Kontaktujte [MELIORO Systems](https://melioro.cz)
+💡 **Tip**: Pro nejlepší zážitek použijte aplikaci na velkoplošné obrazovce s prezentačním režimem!
 
 ⭐ **Líbí se vám aplikace?** Dejte hvězdičku na [GitHubu](https://github.com/melioro-systems/event-echo)
+
+📄 **Licence**: MIT - můžete aplikaci volně používat a upravovat
