@@ -18,24 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const projectStatsDocRef = db ? db.collection("moodStats").doc(config.projectId) : null;
     let currentTranslations = {};
-    const moods_svgs = [
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
-    ];
+    const iconSets = {
+        mood: [
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
+        ],
+        // ... sem přijdou další sady ikon pro ostatní typy otázek
+    };
 
-    const createBreakdownHtml = (votes) => votes.map((count, index) => `<div>${moods_svgs[index]} ${count}</div>`).join('');
+    const createBreakdownHtml = (votes) => {
+        const icons = iconSets[config.activeQuestionSet] || iconSets.mood;
+        return votes.map((count, index) => `<div>${icons[index]} ${count}</div>`).join('');
+    };
 
     const applyTranslations = (lang) => {
-        currentTranslations = config.translations[lang] || config.translations.en;
+        const baseTranslations = config.translations[lang] || config.translations.en;
+        const activeSetTranslations = baseTranslations.questionSets[config.activeQuestionSet] || baseTranslations.questionSets.mood;
+        currentTranslations = {...baseTranslations, ...activeSetTranslations};
+        
         document.querySelectorAll('[data-config-key]').forEach(el => {
             const key = el.dataset.configKey;
             if (currentTranslations[key]) {
                 el.innerHTML = currentTranslations[key];
             }
         });
+        document.title = currentTranslations.pageTitle || "Zobrazení hlasování";
     };
 
     const initLanguage = () => {
@@ -50,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         qrCodeContainer.innerHTML = ""; 
 
-        if (!config.projectUrl || config.projectUrl.includes("VASE-DOMENA")) {
+        if (!config.projectUrl || config.projectUrl.trim() === "" || config.projectUrl.includes("VASE-DOMENA")) {
             qrCodeContainer.innerHTML = "<p>Prosím, nastavte 'projectUrl' v souboru config.js</p>";
             return;
         }
