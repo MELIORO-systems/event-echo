@@ -1,7 +1,7 @@
 const config = {
-    // Demo konfigurace pro kontrolu porozumění
+    // Demo konfigurace pro školení Excel
     projectUrl: window.location.origin + window.location.pathname + "?config=understanding",
-    projectId: "demo-understanding-2025",
+    projectId: "demo-excel-training-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'understanding', // Přednastaveno na kontrolu porozumění
     
@@ -14,34 +14,34 @@ const config = {
 
     translations: {
         en: { 
-            pageTitle: "Understanding Check Demo - Event Echo", 
+            pageTitle: "Excel Advanced - Training", 
             settingsTitle: "Settings & Global Stats",
-            thankYouMessage: "Thank you for trying our demo!", 
+            thankYouMessage: "Thank you for your feedback!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
             statsGlobalTitle: "Global Statistics (Demo)", 
             statsGlobalTotal: "Total demo votes:", 
             statsGlobalToday: "Demo votes today:", 
             statsGlobalLastWeek: "Demo votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
-            scanMeText: "Scan to try the demo!",
+            scanMeText: "Scan to check your understanding!",
 
             questionSets: {
                 understanding: {
-                    appTitle: "Understanding Check Demo", 
-                    appSubtitle: "Test how well topics are understood!",
-                    buttonText: "How well do you understand?", 
-                    modalTitle: "How well do you understand the topic?",
+                    appTitle: "Excel Advanced - Training", 
+                    appSubtitle: "Make sure you don't miss anything",
+                    buttonText: "How am I doing?", 
+                    modalTitle: "How well do you understand the material?",
                     options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
                     responses: [
-                        { text: "Thanks for trying! In real events, this helps speakers adjust their pace.", link: null },
-                        { text: "Your feedback helps! This shows when clarification is needed.", link: null },
-                        { text: "Good understanding! This demo shows positive comprehension.", link: null },
-                        { text: "Great! You're following along well in this demo.", link: null },
-                        { text: "Perfect! You've mastered how the understanding check works.", link: null }
+                        { text: "No worries! Break in 10 minutes - ask the instructor.", link: null },
+                        { text: "Hang in there, it will gradually make sense. Ask questions!", link: null },
+                        { text: "Excellent! You're on the right track.", link: null },
+                        { text: "Great! You're almost an Excel guru!", link: null },
+                        { text: "Excellent! You're ready for practice! 💪", link: null }
                     ],
-                    statsProjectTotal: "Demo responses:",
-                    statsProjectBreakdown: "Understanding levels (demo):",
-                    statsGlobalBreakdown: "Global Understanding Demo:"
+                    statsProjectTotal: "Training responses:",
+                    statsProjectBreakdown: "Understanding levels:",
+                    statsGlobalBreakdown: "Training Understanding Check:"
                 },
                 // Placeholder pro ostatní typy
                 mood: {
@@ -111,21 +111,21 @@ const config = {
 
             questionSets: {
                 understanding: {
-                    appTitle: "Demo Kontrola porozumění", 
-                    appSubtitle: "Otestujte, jak dobře jsou témata pochopena!",
-                    buttonText: "Jak tomu rozumíte?", 
-                    modalTitle: "Jak dobře rozumíte tématu?",
+                    appTitle: "Excel pro pokročilé - Školení", 
+                    appSubtitle: "Ujistěte se, že vám nic neuniklo",
+                    buttonText: "Jak mi to jde?", 
+                    modalTitle: "Jak dobře rozumíte probírané látce?",
                     options: ["Vůbec", "Trochu", "Dobře", "Většinou", "Perfektně"],
                     responses: [
-                        { text: "Díky za vyzkoušení! Na skutečných akcích to pomáhá přednášejícím upravit tempo.", link: null },
-                        { text: "Vaše zpětná vazba pomáhá! Ukazuje, kdy je potřeba vysvětlení.", link: null },
-                        { text: "Dobré porozumění! Demo ukazuje pozitivní pochopení.", link: null },
-                        { text: "Skvěle! V tomto demu to chápete dobře.", link: null },
-                        { text: "Perfektní! Ovládáte, jak kontrola porozumění funguje.", link: null }
+                        { text: "Žádný strach! Přestávka za 10 minut - zeptejte se lektora.", link: null },
+                        { text: "Držte se, postupně to dává smysl. Ptejte se!", link: null },
+                        { text: "Výborně! Jste na dobré cestě.", link: null },
+                        { text: "Skvělé! Jste skoro Excel guru!", link: null },
+                        { text: "Excelentní! Jste připraveni na praxi! 💪", link: null }
                     ],
-                    statsProjectTotal: "Demo odpovědí:",
-                    statsProjectBreakdown: "Úrovně porozumění (demo):",
-                    statsGlobalBreakdown: "Globální demo porozumění:"
+                    statsProjectTotal: "Odpovědi ze školení:",
+                    statsProjectBreakdown: "Úrovně porozumění:",
+                    statsGlobalBreakdown: "Kontrola porozumění školení:"
                 },
                 // Placeholder pro ostatní typy
                 mood: {
