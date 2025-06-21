@@ -8,7 +8,7 @@ const config = {
     projectId: "default-project-id", 
     
     // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
-    votingFrequency: 'daily',
+    votingFrequency: 'hourly',
 
     // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
     activeQuestionSet: 'mood',
