@@ -11,7 +11,7 @@ const config = {
     votingFrequency: 'hourly',
 
     // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
-    activeQuestionSet: 'understanding',
+    activeQuestionSet: 'preference',
 
     // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
