@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const transaction = db.runTransaction(t => t.get(projectStatsDocRef).then(d => {
             const data = d.exists ? d.data() : {};
             
-            // Initialize votes structure if it doesn't exist
             if (!data.votes) {
                 data.votes = {};
             }
@@ -159,10 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Increment the specific vote
             data.votes[config.activeQuestionSet][index]++;
             
-            // Handle history
             if (!data.history) {
                 data.history = [];
             }
