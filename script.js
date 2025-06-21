@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsToggleBtn = document.getElementById('settings-toggle-btn');
     const collapsibleArea = document.querySelector('.collapsible-area');
     const gdprLink = document.getElementById('gdpr-link');
-    let currentLang = 'en';
-    let currentTranslations = {};
+    let currentLang = 'en', currentTranslations = {};
     let currentQuestionSet;
 
     const iconSets = {
@@ -35,16 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
         ],
         understanding: [
-            // ... nové ikony ...
+             // ... nové ikony ...
         ],
         preference: [
-            // ... nové ikony ...
+             // ... nové ikony ...
         ],
         agreement: [
-            // ... nové ikony ...
+             // ... nové ikony ...
         ]
     };
-
     const createBreakdownHtml = (votes) => {
         const icons = iconSets[config.activeQuestionSet] || iconSets.mood;
         return votes.map((count, index) => `<div>${icons[index]} ${count}</div>`).join('');
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             moodSelectorContainer.appendChild(moodEl);
         });
     };
-
-    // ... Zbytek JS kódu (listenery, Firebase logika, atd.) ...
     
+    // ... Zbytek JS kódu (listenery, Firebase logika, atd.) ...
 });
