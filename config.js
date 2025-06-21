@@ -1,11 +1,21 @@
 const config = {
-    projectUrl: "", 
-    projectId: "default-project-id", 
-    votingFrequency: 'daily',
-    activeQuestionSet: 'mood', 
+    // DŮLEŽITÉ: Vložte sem URL adresu, kde je nasazena vaše hlavní aplikace (index.html)
+    // Příklad: "https://uzivatel.github.io/event-echo/"
+    projectUrl: "https://melioro-systems.github.io/mereni-nalady-web/", 
 
+    // DŮLEŽITÉ: Změňte pro každou kopii/nasazení aplikace na unikátní název!
+    // Příklad: "svatba-jana-a-eva-2025" nebo "skoleni-excel-pokrocili"
+    projectId: "default-project-id", 
+    
+    // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
+    votingFrequency: 'daily',
+
+    // Jaký typ otázek se má zobrazit? Možnosti: 'mood', 'understanding', 'preference', 'agreement'
+    activeQuestionSet: 'mood',
+
+    // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
-        filename: "https://melioro-systems.github.io/mereni-nalady-web/", 
+        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
@@ -20,7 +30,7 @@ const config = {
             statsGlobalTitle: "Global Statistics (All Projects)", 
             statsGlobalTotal: "Total votes (global):", 
             statsGlobalToday: "Today (global):", 
-            statsGlobalLastWeek: "Last 7 days (global):", 
+            statsGlobalLastWeek: "Last 7 days (global):",
             footerText: 'Made with <span class="heart-icon">❤️</span> by <a href="https://melioro.cz" target="_blank" rel="noopener noreferrer">MELIORO Systems</a>',
             gdprLinkText: "GDPR Consent",
             gdprAlertText: "I acknowledge that this mini-application does not store or process any personal data. 😊",
