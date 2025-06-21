@@ -56,3 +56,11 @@ body{font-family:Inter,sans-serif;background-color:var(--background-color);color
 .heart-icon { color: #e53935; display: inline-block; vertical-align: -0.1em; }
 #gdpr-link, .app-footer a { color: var(--text-light); text-decoration: underline; cursor: pointer; }
 #gdpr-link:hover, .app-footer a:hover { color: var(--primary-color); }
+/* Styly pro globální rozložení */
+#global-breakdown-container .stat-item {
+    padding-top: 0.5rem;
+}
+#global-breakdown-container .stat-label {
+    font-weight: bold;
+    color: var(--text-color);
+}
