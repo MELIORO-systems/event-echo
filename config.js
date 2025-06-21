@@ -8,7 +8,7 @@ const config = {
     projectId: "default-project-id", 
     
     // Jak často může uživatel hlasovat? Možnosti: 'daily', 'hourly', 'once'
-    votingFrequency: 'daily',
+    votingFrequency: 'hourly',
 
     // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
