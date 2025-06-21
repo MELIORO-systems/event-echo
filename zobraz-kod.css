@@ -15,7 +15,7 @@ body {
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    padding: 3rem;
+    padding: 3rem 4rem;
     width: 100%;
     max-width: 800px;
     text-align: center;
@@ -33,11 +33,11 @@ p {
 .stats-display {
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     margin-bottom: 2.5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 .stat-display-item {
     display: flex;
@@ -61,6 +61,14 @@ p {
 }
 .stat-value.breakdown {
     font-size: 2rem;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.stat-value.breakdown > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .stat-value.breakdown svg {
     width: 48px;
