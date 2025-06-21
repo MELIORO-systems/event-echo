@@ -37,14 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsToggleBtn = document.getElementById('settings-toggle-btn');
     const collapsibleArea = document.querySelector('.collapsible-area');
     const gdprLink = document.getElementById('gdpr-link');
+    const globalBreakdownContainer = document.getElementById('global-breakdown-container');
     let currentLang = 'en', currentTranslations = {};
     let currentQuestionSet;
 
     const iconSets = {
         mood: [
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c.5 1.5 2 3 4 3s3.5-1.5 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`
         ],
@@ -70,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"></path></svg>`
         ]
     };
-    const createBreakdownHtml = (votes) => {
-        const icons = iconSets[config.activeQuestionSet] || iconSets.mood;
-        return votes.map((count, index) => `<div>${icons[index]} ${count}</div>`).join('');
-    }
+    const createBreakdownHtml = (votes, setName) => {
+        const icons = iconSets[setName] || [];
+        return votes.map((count, index) => `<div>${icons[index] || ''} ${count}</div>`).join('');
+    };
 
     const applyTranslations = (lang) => {
         console.log(`Applying translations for language: ${lang}`);
@@ -146,10 +147,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         console.log("Processing vote...");
         const transaction = db.runTransaction(t => t.get(projectStatsDocRef).then(d => {
-            const data = d.exists ? d.data() : { votes: [0,0,0,0,0], history: [] };
-            data.votes[index] = (data.votes[index] || 0) + 1;
-            data.history.push({ moodIndex: index, timestamp: new Date() });
+            const data = d.exists ? d.data() : {};
+            
+            // Initialize votes structure if it doesn't exist
+            if (!data.votes) {
+                data.votes = {};
+            }
+            Object.keys(config.translations.en.questionSets).forEach(setName => {
+                if (!data.votes[setName]) {
+                    data.votes[setName] = [0, 0, 0, 0, 0];
+                }
+            });
+
+            // Increment the specific vote
+            data.votes[config.activeQuestionSet][index]++;
+            
+            // Handle history
+            if (!data.history) {
+                data.history = [];
+            }
+            data.history.push({ voteType: config.activeQuestionSet, voteIndex: index, timestamp: new Date() });
             if (data.history.length > 1000) data.history.shift();
+            
             t.set(projectStatsDocRef, data);
         }));
         transaction.then(() => { 
@@ -212,29 +231,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (projectStatsDocRef) {
         projectStatsDocRef.onSnapshot(doc => {
-            const data = doc.exists ? doc.data() : { votes: [0,0,0,0,0] };
-            const votes = data.votes || [0,0,0,0,0];
+            const data = doc.exists ? doc.data() : {};
+            const votes = (data.votes && data.votes[config.activeQuestionSet]) ? data.votes[config.activeQuestionSet] : [0,0,0,0,0];
             document.getElementById('stats-project-total').textContent = votes.reduce((s, c) => s + c, 0);
-            document.getElementById('stats-project-breakdown').innerHTML = createBreakdownHtml(votes);
+            document.getElementById('stats-project-breakdown').innerHTML = createBreakdownHtml(votes, config.activeQuestionSet);
         }, err => console.error("Chyba při načítání statistik projektu: ", err));
     }
     if (globalStatsCollectionRef) {
         globalStatsCollectionRef.onSnapshot(snapshot => {
-            let globalVotes = [0,0,0,0,0], todayTotal = 0, weekTotal = 0;
+            let globalVotes = { mood: [0,0,0,0,0], understanding: [0,0,0,0,0], preference: [0,0,0,0,0], agreement: [0,0,0,0,0] };
+            let todayTotal = 0, weekTotal = 0;
             const today = new Date(); today.setHours(0,0,0,0);
             const sevenDaysAgo = new Date(); sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            
             snapshot.forEach(doc => {
                 const data = doc.data();
-                const votes = data.votes || [0,0,0,0,0];
-                for(let i=0; i<5; i++) { globalVotes[i] += (votes[i] || 0); }
+                if(data.votes) {
+                    Object.keys(globalVotes).forEach(setName => {
+                        if (data.votes[setName]) {
+                            for(let i=0; i<5; i++) { globalVotes[setName][i] += (data.votes[setName][i] || 0); }
+                        }
+                    });
+                }
                 const history = data.history || [];
                 todayTotal += history.filter(e => e.timestamp.toDate() >= today).length;
                 weekTotal += history.filter(e => e.timestamp.toDate() >= sevenDaysAgo).length;
             });
-            document.getElementById('stats-global-total').textContent = globalVotes.reduce((s, c) => s + c, 0);
+            
+            document.getElementById('stats-global-total').textContent = Object.values(globalVotes).flat().reduce((s, c) => s + c, 0);
             document.getElementById('stats-global-today').textContent = todayTotal;
             document.getElementById('stats-global-last-week').textContent = weekTotal;
-            document.getElementById('stats-global-breakdown').innerHTML = createBreakdownHtml(globalVotes);
+
+            globalBreakdownContainer.innerHTML = "";
+            Object.keys(globalVotes).forEach(setName => {
+                const setTranslations = (currentTranslations.questionSets || {})[setName] || {};
+                const breakdownTitle = setTranslations.statsGlobalBreakdown || `Global ${setName} distribution:`;
+                const breakdownHTML = createBreakdownHtml(globalVotes[setName], setName);
+                const statItem = document.createElement('div');
+                statItem.className = 'stat-item';
+                statItem.innerHTML = `<span class="stat-label">${breakdownTitle}</span><span class="stat-value breakdown">${breakdownHTML}</span>`;
+                globalBreakdownContainer.appendChild(statItem);
+            });
+
         }, err => console.error("Chyba při načítání globálních statistik: ", err));
     }
 
