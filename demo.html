@@ -383,6 +383,151 @@
             font-weight: 600;
         }
         
+        /* Jak to funguje sekce */
+        .how-it-works-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(138, 56, 236, 0.1);
+            border-bottom: 1px solid rgba(138, 56, 236, 0.1);
+        }
+        
+        .how-it-works-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step-item {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff006e, #8338ec);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 15px rgba(131, 56, 236, 0.3);
+        }
+        
+        .step-item h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .step-item p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .step-arrow {
+            font-size: 2rem;
+            color: #ddd;
+            font-weight: 300;
+        }
+        
+        /* Open Source sekce */
+        .open-source-section {
+            background: linear-gradient(135deg, rgba(138,56,236,0.05), rgba(58,134,255,0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .open-source-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .open-source-text h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .open-source-text p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .github-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .github-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .github-button.primary {
+            background: #24292e;
+            color: white;
+        }
+        
+        .github-button.primary:hover {
+            background: #1a1e22;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .github-button.secondary {
+            background: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .github-button.secondary:hover {
+            border-color: #8338ec;
+            color: #8338ec;
+            transform: translateY(-2px);
+        }
+        
+        .open-source-badge {
+            text-align: center;
+        }
+        
+        .open-source-badge p {
+            margin-top: 0.5rem;
+            color: #666;
+            font-weight: 600;
+        }
+        
         @media (max-width: 768px) {
             .banner-section {
                 height: 250px;
@@ -413,13 +558,31 @@
             .benefits-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .step-arrow {
+                display: none;
+            }
+            
+            .open-source-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .github-buttons {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Banner sekce -->
     <div class="banner-section">
-        <img src="demo-banner.jpg" alt="Event Echo - Live Feedback Collection" class="banner-image">
+        <img src="banner.png" alt="Event Echo - Live Feedback Collection" class="banner-image">
         <div class="banner-overlay">
             <h1 class="banner-title">Event Echo</h1>
             <p class="banner-subtitle">Sbírejte zpětnou vazbu v reálném čase</p>
@@ -466,6 +629,69 @@
                     Skvělé pro <strong>kulturní akce</strong>, kde vás zajímá okamžitá reakce. 
                     A zábavné pro <strong>soukromé oslavy</strong>, kde chcete zapojit všechny hosty.
                 </p>
+            </section>
+            
+            <!-- Jak to funguje sekce -->
+            <section class="how-it-works-section">
+                <h2>Jak to funguje?</h2>
+                <p class="section-subtitle">Jednoduchý 3-krokový proces</p>
+                
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Naskenujte QR kód</h3>
+                        <p>Účastníci použijí své telefony</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>Vyberte odpověď</h3>
+                        <p>Jednoduché rozhraní s 5 možnostmi</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Sledujte výsledky</h3>
+                        <p>Real-time statistiky na obrazovce</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Open Source sekce -->
+            <section class="open-source-section">
+                <div class="open-source-content">
+                    <div class="open-source-text">
+                        <h2>🚀 Open Source projekt</h2>
+                        <p>Event Echo je <strong>zdarma k použití</strong> pro všechny. Stáhněte si zdrojový kód z GitHubu, 
+                        upravte podle svých potřeb a nasaďte na vlastní hosting během několika minut.</p>
+                        <div class="github-buttons">
+                            <a href="https://github.com/melioro-systems/event-echo" target="_blank" class="github-button primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Zobrazit na GitHubu
+                            </a>
+                            <a href="https://github.com/melioro-systems/event-echo/blob/main/readme.md" target="_blank" class="github-button secondary">
+                                📖 Dokumentace
+                            </a>
+                        </div>
+                    </div>
+                    <div class="open-source-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff006e" />
+                                    <stop offset="50%" style="stop-color:#8338ec" />
+                                    <stop offset="100%" style="stop-color:#3a86ff" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z"></path>
+                            <path d="M2 17L12 22L22 17"></path>
+                            <path d="M2 12L12 17L22 12"></path>
+                        </svg>
+                        <p>MIT License</p>
+                    </div>
+                </div>
             </section>
             
             <!-- Demo sekce -->
