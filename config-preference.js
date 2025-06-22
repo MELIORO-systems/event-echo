@@ -4,6 +4,7 @@ const config = {
     projectId: "demo-design-presentation-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'preference', // Přednastaveno na průzkum líbivosti
+    defaultTheme: 'sunset', // Oranžový motiv pro design prezentaci
     
     backgroundImage: {
         filename: "",
@@ -18,10 +19,10 @@ const config = {
             settingsTitle: "Settings & Global Stats",
             thankYouMessage: "Thank you for your rating!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
-            statsGlobalTitle: "Global Statistics (Demo)", 
-            statsGlobalTotal: "Total demo votes:", 
-            statsGlobalToday: "Demo votes today:", 
-            statsGlobalLastWeek: "Demo votes (7 days):",
+            statsGlobalTitle: "Global Statistics", 
+            statsGlobalTotal: "Total votes:", 
+            statsGlobalToday: "Votes today:", 
+            statsGlobalLastWeek: "Votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
             scanMeText: "Scan to rate our design!",
 
@@ -101,10 +102,10 @@ const config = {
             settingsTitle: "Nastavení & Globální statistiky",
             thankYouMessage: "Děkujeme za vaše hodnocení!", 
             alreadyVotedMessage: "Demo limit: Hlasovat můžete jednou za hodinu.",
-            statsGlobalTitle: "Globální statistiky (Demo)", 
-            statsGlobalTotal: "Celkem demo hlasů:", 
-            statsGlobalToday: "Demo hlasů dnes:", 
-            statsGlobalLastWeek: "Demo hlasů (7 dní):",
+            statsGlobalTitle: "Globální statistiky", 
+            statsGlobalTotal: "Celkem hlasů:", 
+            statsGlobalToday: "Hlasů dnes:", 
+            statsGlobalLastWeek: "Hlasů (7 dní):",
             gdprAlertText: "Toto je demo. Žádné osobní údaje se neukládají. 😊",
             scanMeText: "Naskenujte pro hodnocení designu!",
 
