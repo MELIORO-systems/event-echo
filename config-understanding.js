@@ -7,7 +7,7 @@ const config = {
     defaultTheme: 'forest', // Zelený motiv pro školení
     
     backgroundImage: {
-        filename: "",
+        filename: "pozadi-understanding.png",
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
