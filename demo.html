@@ -528,6 +528,146 @@
             font-weight: 600;
         }
         
+        /* Feedback CTA sekce */
+        .feedback-cta-section {
+            background: linear-gradient(135deg, #8338ec, #ff006e);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feedback-cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .feedback-cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feedback-cta-section h2 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .feedback-cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feedback-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: white;
+            color: #8338ec;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feedback-cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .button-icon {
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+        
+        .button-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .feedback-cta-button:hover .button-arrow {
+            transform: translateX(5px);
+        }
+        
+        .feedback-note {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+        }
+        
+        /* Demo sekce */
+        .demo-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .demo-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(138, 56, 236, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(138, 56, 236, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .demo-feature:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(138, 56, 236, 0.1);
+            background: rgba(138, 56, 236, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .demo-feature p {
+            margin: 0;
+            text-align: left;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
         @media (max-width: 768px) {
             .banner-section {
                 height: 250px;
@@ -575,6 +715,27 @@
             
             .github-buttons {
                 justify-content: center;
+            }
+            
+            .feedback-cta-section {
+                padding: 3rem 2rem;
+            }
+            
+            .feedback-cta-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feedback-cta-section p {
+                font-size: 1.1rem;
+            }
+            
+            .feedback-cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .demo-features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -694,16 +855,42 @@
                 </div>
             </section>
             
+            <!-- Feedback CTA sekce -->
+            <section class="feedback-cta-section">
+                <div class="feedback-cta-content">
+                    <h2>💜 Líbí se vám Event Echo?</h2>
+                    <p>Vyzkoušejte si aplikaci přímo teď a dejte nám vědět, co si myslíte!</p>
+                    <a href="index.html" target="_blank" class="feedback-cta-button">
+                        <span class="button-icon">⭐</span>
+                        <span class="button-text">Ohodnotit Event Echo</span>
+                        <span class="button-arrow">→</span>
+                    </a>
+                    <p class="feedback-note">Vaše zpětná vazba nám pomáhá aplikaci vylepšovat</p>
+                </div>
+            </section>
+            
             <!-- Demo sekce -->
-            <div class="features">
-                <h3>🚀 Vyzkoušejte všechny varianty</h3>
-                <ul>
-                    <li>✨ Hlasování je omezeno na 1x za hodinu</li>
-                    <li>🎯 Každá varianta má vlastní demo projekt</li>
-                    <li>💾 Data se ukládají do skutečné databáze</li>
-                    <li>📊 Statistiky se aktualizují v reálném čase</li>
-                </ul>
-            </div>
+            <section class="demo-section">
+                <h2 class="demo-title">🚀 Vyzkoušejte všechny varianty</h2>
+                <div class="demo-features">
+                    <div class="demo-feature">
+                        <span class="feature-icon">✨</span>
+                        <p>Hlasování je omezeno na 1x za hodinu</p>
+                    </div>
+                    <div class="demo-feature">
+                        <span class="feature-icon">🎯</span>
+                        <p>Každá varianta má vlastní demo projekt</p>
+                    </div>
+                    <div class="demo-feature">
+                        <span class="feature-icon">💾</span>
+                        <p>Data se ukládají do skutečné databáze</p>
+                    </div>
+                    <div class="demo-feature">
+                        <span class="feature-icon">📊</span>
+                        <p>Statistiky se aktualizují v reálném čase</p>
+                    </div>
+                </div>
+            </section>
             
             <div class="demo-grid">
                 <div class="demo-card mood">
