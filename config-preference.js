@@ -7,7 +7,7 @@ const config = {
     defaultTheme: 'sunset', // Oranžový motiv pro design prezentaci
     
     backgroundImage: {
-        filename: "",
+        filename: "pozadi-preference.png",
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
