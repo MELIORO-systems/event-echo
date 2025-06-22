@@ -7,7 +7,7 @@ const config = {
     defaultTheme: 'forest', // Zelený motiv pro vánoční atmosféru
     
     backgroundImage: {
-        filename: "",
+        filename: "pozadi-agreement.png",
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
