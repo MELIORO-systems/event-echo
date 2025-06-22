@@ -4,6 +4,7 @@ const config = {
     projectId: "demo-techconf-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'mood', // Přednastaveno na měření nálady
+    defaultTheme: 'dark', // Tmavý motiv pro tech konferenci
     
     backgroundImage: {
         filename: "",
@@ -18,10 +19,10 @@ const config = {
             settingsTitle: "Settings & Global Stats",
             thankYouMessage: "Thank you for sharing your mood!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
-            statsGlobalTitle: "Global Statistics (Demo)", 
-            statsGlobalTotal: "Total demo votes:", 
-            statsGlobalToday: "Demo votes today:", 
-            statsGlobalLastWeek: "Demo votes (7 days):",
+            statsGlobalTitle: "Global Statistics", 
+            statsGlobalTotal: "Total votes:", 
+            statsGlobalToday: "Votes today:", 
+            statsGlobalLastWeek: "Votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
             scanMeText: "Scan to share your mood!",
 
@@ -102,10 +103,10 @@ const config = {
             settingsTitle: "Nastavení & Globální statistiky",
             thankYouMessage: "Děkujeme za sdílení nálady!", 
             alreadyVotedMessage: "Demo limit: Hlasovat můžete jednou za hodinu.",
-            statsGlobalTitle: "Globální statistiky (Demo)", 
-            statsGlobalTotal: "Celkem demo hlasů:", 
-            statsGlobalToday: "Demo hlasů dnes:", 
-            statsGlobalLastWeek: "Demo hlasů (7 dní):",
+            statsGlobalTitle: "Globální statistiky", 
+            statsGlobalTotal: "Celkem hlasů:", 
+            statsGlobalToday: "Hlasů dnes:", 
+            statsGlobalLastWeek: "Hlasů (7 dní):",
             gdprAlertText: "Toto je demo. Žádné osobní údaje se neukládají. 😊",
             scanMeText: "Naskenujte pro sdílení nálady!",
 
