@@ -4,6 +4,7 @@ const config = {
     projectId: "demo-excel-training-2025",
     votingFrequency: 'hourly', // Pro demo - možnost hlasovat každou hodinu
     activeQuestionSet: 'understanding', // Přednastaveno na kontrolu porozumění
+    defaultTheme: 'forest', // Zelený motiv pro školení
     
     backgroundImage: {
         filename: "",
@@ -18,10 +19,10 @@ const config = {
             settingsTitle: "Settings & Global Stats",
             thankYouMessage: "Thank you for your feedback!", 
             alreadyVotedMessage: "Demo limit: You can vote once per hour.",
-            statsGlobalTitle: "Global Statistics (Demo)", 
-            statsGlobalTotal: "Total demo votes:", 
-            statsGlobalToday: "Demo votes today:", 
-            statsGlobalLastWeek: "Demo votes (7 days):",
+            statsGlobalTitle: "Global Statistics", 
+            statsGlobalTotal: "Total votes:", 
+            statsGlobalToday: "Votes today:", 
+            statsGlobalLastWeek: "Votes (7 days):",
             gdprAlertText: "This is a demo. No personal data is stored. 😊",
             scanMeText: "Scan to check your understanding!",
 
@@ -101,10 +102,10 @@ const config = {
             settingsTitle: "Nastavení & Globální statistiky",
             thankYouMessage: "Děkujeme za zpětnou vazbu!", 
             alreadyVotedMessage: "Demo limit: Hlasovat můžete jednou za hodinu.",
-            statsGlobalTitle: "Globální statistiky (Demo)", 
-            statsGlobalTotal: "Celkem demo hlasů:", 
-            statsGlobalToday: "Demo hlasů dnes:", 
-            statsGlobalLastWeek: "Demo hlasů (7 dní):",
+            statsGlobalTitle: "Globální statistiky", 
+            statsGlobalTotal: "Celkem hlasů:", 
+            statsGlobalToday: "Hlasů dnes:", 
+            statsGlobalLastWeek: "Hlasů (7 dní):",
             gdprAlertText: "Toto je demo. Žádné osobní údaje se neukládají. 😊",
             scanMeText: "Naskenujte pro kontrolu porozumění!",
 
