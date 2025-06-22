@@ -488,10 +488,23 @@ svg {
     color: var(--text-light);
     text-decoration: underline;
     cursor: pointer;
+    transition: color 0.3s, opacity 0.3s;
 }
 
 .app-footer a:hover {
     color: var(--primary-color);
+}
+
+/* Ikony v patičce */
+.app-footer a svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.app-footer a:hover svg {
+    transform: translateY(-2px);
 }
 
 /* Kontejner pro globální rozložení */
