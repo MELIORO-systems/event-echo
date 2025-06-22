@@ -3,235 +3,531 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Echo - Demo všech variant</title>
+    <title>Event Echo - Sbírejte zpětnou vazbu v reálném čase</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
-            padding: 2rem;
+            padding: 0;
             min-height: 100vh;
+            background: linear-gradient(to bottom, #f5f3ff 0%, #fff5f0 50%, #f0fffc 100%);
+        }
+        
+        /* Banner sekce */
+        .banner-section {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.7));
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .banner-title {
+            color: #333;
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.8);
+            margin: 0;
+            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .banner-subtitle {
+            color: #555;
+            font-size: 1.4rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            text-shadow: 0 1px 10px rgba(255,255,255,0.8);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Hlavní obsah */
+        .main-content {
+            max-width: 1200px;
+            margin: -80px auto 0;
+            padding: 0 2rem 2rem;
+            position: relative;
+            z-index: 10;
         }
         
         .demo-container {
-            background: white;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
             padding: 3rem;
-            max-width: 800px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 2.5rem;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-        
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .demo-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 2px solid transparent;
-        }
-        
-        .demo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: var(--card-color);
-        }
-        
-        .demo-card.mood { --card-color: #007bff; }
-        .demo-card.understanding { --card-color: #28a745; }
-        .demo-card.preference { --card-color: #ffc107; }
-        .demo-card.agreement { --card-color: #dc3545; }
-        
-        .demo-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .demo-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .demo-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .demo-button {
-            display: inline-block;
-            background: var(--card-color);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 220px;
-            box-sizing: border-box;
-        }
-        
-        .demo-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .demo-button-secondary {
-            background: transparent;
-            color: var(--card-color);
-            border: 2px solid var(--card-color);
-            margin-top: 0.5rem;
-        }
-        
-        .demo-button-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.8);
         }
         
         .features {
-            background: #f0f4f8;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            background: linear-gradient(135deg, rgba(138,56,236,0.05), rgba(58,134,255,0.05));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(138,56,236,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff006e, #8338ec, #3a86ff);
         }
         
         .features h3 {
             margin-top: 0;
             color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
         }
         
         .features ul {
             margin: 0;
             padding-left: 1.5rem;
-            color: #666;
+            color: #555;
+            line-height: 1.8;
         }
         
         .features li {
             margin-bottom: 0.5rem;
         }
         
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--card-color);
+        }
+        
+        .demo-card.mood { 
+            --card-gradient: linear-gradient(135deg, #ff006e, #c10055);
+            --card-color: #ff006e;
+        }
+        .demo-card.understanding { 
+            --card-gradient: linear-gradient(135deg, #8338ec, #6a1eb0);
+            --card-color: #8338ec;
+        }
+        .demo-card.preference { 
+            --card-gradient: linear-gradient(135deg, #ffb700, #ff8c00);
+            --card-color: #ffb700;
+        }
+        .demo-card.agreement { 
+            --card-gradient: linear-gradient(135deg, #06ffa5, #00d084);
+            --card-color: #06ffa5;
+        }
+        
+        .demo-card:hover .demo-icon {
+            transform: scale(1.1);
+        }
+        
+        .demo-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        
+        .demo-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+        
+        .demo-description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .demo-button {
+            display: inline-block;
+            background: var(--card-gradient);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 230px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .demo-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .demo-button-secondary {
+            background: transparent;
+            color: var(--card-color);
+            border: 2px solid var(--card-color);
+            margin-top: 0.8rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .demo-button-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--card-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .demo-button-secondary:hover::before {
+            left: 0;
+        }
+        
+        .demo-button-secondary:hover {
+            color: white;
+            border-color: transparent;
+        }
+        
         .footer {
             text-align: center;
             color: #666;
             font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 2px solid transparent;
+            border-image: linear-gradient(90deg, transparent, #8338ec, transparent) 1;
         }
         
         .footer a {
-            color: #007bff;
+            background: linear-gradient(135deg, #ff006e, #8338ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
         }
         
         .footer a:hover {
-            text-decoration: underline;
+            opacity: 0.7;
+        }
+        
+        /* Úvodní sekce */
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .intro-section h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Benefity grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            background: rgba(138, 56, 236, 0.03);
+            border: 1px solid rgba(138, 56, 236, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138, 56, 236, 0.1);
+            background: rgba(138, 56, 236, 0.05);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .benefit-item p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Use cases sekce */
+        .use-cases-section {
+            background: linear-gradient(135deg, rgba(255,0,110,0.03), rgba(58,134,255,0.03));
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(138, 56, 236, 0.08);
+        }
+        
+        .use-cases-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #555;
+            text-align: center;
+            margin: 0;
+        }
+        
+        .use-cases-text strong {
+            color: #8338ec;
+            font-weight: 600;
         }
         
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            .banner-section {
+                height: 250px;
+            }
+            
+            .banner-title {
+                font-size: 2.8rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            .main-content {
+                margin-top: -60px;
+                padding: 0 1rem 1rem;
             }
             
             .demo-container {
                 padding: 2rem 1.5rem;
             }
             
-            h1 {
-                font-size: 2rem;
+            .demo-button {
+                width: 100%;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="demo-container">
-        <h1>Event Echo Demo</h1>
-        <p class="subtitle">Vyzkoušejte všechny 4 varianty sběru zpětné vazby</p>
-        
-        <div class="features">
-            <h3>🚀 Demo funkce:</h3>
-            <ul>
-                <li>Hlasování je omezeno na 1x za hodinu</li>
-                <li>Každá varianta má vlastní demo projekt</li>
-                <li>Data se ukládají do skutečné databáze</li>
-                <li>Statistiky se aktualizují v reálném čase</li>
-            </ul>
+    <!-- Banner sekce -->
+    <div class="banner-section">
+        <img src="demo-banner.jpg" alt="Event Echo - Live Feedback Collection" class="banner-image">
+        <div class="banner-overlay">
+            <h1 class="banner-title">Event Echo</h1>
+            <p class="banner-subtitle">Sbírejte zpětnou vazbu v reálném čase</p>
         </div>
-        
-        <div class="demo-grid">
-            <div class="demo-card mood">
-                <div class="demo-icon">😊</div>
-                <div class="demo-title">Jakou máte náladu?</div>
-                <div class="demo-description">
-                    Zjistěte aktuální náladu účastníků vaší akce. Ideální pro konference, školení a firemní meetingy.
+    </div>
+    
+    <!-- Hlavní obsah -->
+    <div class="main-content">
+        <div class="demo-container">
+            <!-- Úvodní sekce -->
+            <section class="intro-section">
+                <h2>Získejte okamžitou zpětnou vazbu od vašeho publika</h2>
+                <p class="intro-text">
+                    Event Echo je jednoduchý nástroj pro sběr živé zpětné vazby během jakékoliv akce. 
+                    Účastníci hlasují přímo ze svých telefonů, vy sledujete výsledky v reálném čase na velkoplošné obrazovce. 
+                    Žádné aplikace, žádné registrace – jen naskenovat QR kód a hlasovat.
+                </p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <h3>Výsledky ihned</h3>
+                        <p>Sledujte, jak se mění nálada vašeho publika v reálném čase</p>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📱</span>
+                        <h3>Bez instalace</h3>
+                        <p>Funguje v každém mobilním prohlížeči, účastníci nemusí nic stahovat</p>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔒</span>
+                        <h3>100% anonymní</h3>
+                        <p>Nesbíráme žádné osobní údaje, jen názory</p>
+                    </div>
                 </div>
-                <a href="index.html?config=mood" class="demo-button" target="_blank">Vyzkoušet demo</a>
-                <a href="zobraz-kod.html?config=mood" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+            </section>
+            
+            <!-- Pro koho sekce -->
+            <section class="use-cases-section">
+                <p class="use-cases-text">
+                    Event Echo změní způsob, jak sbíráte zpětnou vazbu. 
+                    Ideální pro <strong>vzdělávací akce</strong>, kde potřebujete vědět, zda publikum rozumí. 
+                    Perfektní pro <strong>firemní eventy</strong>, kde chcete měřit spokojenost. 
+                    Skvělé pro <strong>kulturní akce</strong>, kde vás zajímá okamžitá reakce. 
+                    A zábavné pro <strong>soukromé oslavy</strong>, kde chcete zapojit všechny hosty.
+                </p>
+            </section>
+            
+            <!-- Demo sekce -->
+            <div class="features">
+                <h3>🚀 Vyzkoušejte všechny varianty</h3>
+                <ul>
+                    <li>✨ Hlasování je omezeno na 1x za hodinu</li>
+                    <li>🎯 Každá varianta má vlastní demo projekt</li>
+                    <li>💾 Data se ukládají do skutečné databáze</li>
+                    <li>📊 Statistiky se aktualizují v reálném čase</li>
+                </ul>
             </div>
             
-            <div class="demo-card understanding">
-                <div class="demo-icon">🧠</div>
-                <div class="demo-title">Rozuměli jste tomu?</div>
-                <div class="demo-description">
-                    Ověřte, jak dobře účastníci rozumí prezentovanému tématu. Perfektní pro školení a výuku.
+            <div class="demo-grid">
+                <div class="demo-card mood">
+                    <div class="demo-icon">😊</div>
+                    <div class="demo-title">Jakou máte náladu?</div>
+                    <div class="demo-description">
+                        Zjistěte aktuální náladu účastníků vaší akce. Ideální pro konference, školení a firemní meetingy.
+                    </div>
+                    <a href="index.html?config=mood" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                    <a href="zobraz-kod.html?config=mood" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
                 </div>
-                <a href="index.html?config=understanding" class="demo-button" target="_blank">Vyzkoušet demo</a>
-                <a href="zobraz-kod.html?config=understanding" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+                
+                <div class="demo-card understanding">
+                    <div class="demo-icon">🧠</div>
+                    <div class="demo-title">Rozuměli jste tomu?</div>
+                    <div class="demo-description">
+                        Ověřte, jak dobře účastníci rozumí prezentovanému tématu. Perfektní pro školení a výuku.
+                    </div>
+                    <a href="index.html?config=understanding" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                    <a href="zobraz-kod.html?config=understanding" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+                </div>
+                
+                <div class="demo-card preference">
+                    <div class="demo-icon">⭐</div>
+                    <div class="demo-title">Jak se vám to líbilo?</div>
+                    <div class="demo-description">
+                        Získejte okamžitou zpětnou vazbu na produkty, nápady nebo prezentace. Skvělé pro produktové demo.
+                    </div>
+                    <a href="index.html?config=preference" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                    <a href="zobraz-kod.html?config=preference" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+                </div>
+                
+                <div class="demo-card agreement">
+                    <div class="demo-icon">👍</div>
+                    <div class="demo-title">Souhlasíte s tím?</div>
+                    <div class="demo-description">
+                        Rychlé hlasování o návrzích a rozhodnutích. Ideální pro týmové porady a strategické meetingy.
+                    </div>
+                    <a href="index.html?config=agreement" class="demo-button" target="_blank">Vyzkoušet demo</a>
+                    <a href="zobraz-kod.html?config=agreement" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+                </div>
             </div>
             
-            <div class="demo-card preference">
-                <div class="demo-icon">⭐</div>
-                <div class="demo-title">Jak se vám to líbilo?</div>
-                <div class="demo-description">
-                    Získejte okamžitou zpětnou vazbu na produkty, nápady nebo prezentace. Skvělé pro produktové demo.
-                </div>
-                <a href="index.html?config=preference" class="demo-button" target="_blank">Vyzkoušet demo</a>
-                <a href="zobraz-kod.html?config=preference" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
+            <div class="footer">
+                <p>
+                    Pro vlastní nasazení navštivte <a href="https://github.com/melioro-systems/event-echo" target="_blank">GitHub</a> |
+                    Vytvořilo <a href="https://melioro.cz" target="_blank">MELIORO Systems</a> |
+                    <a href="https://eventecho.cz" target="_blank">eventecho.cz</a>
+                </p>
             </div>
-            
-            <div class="demo-card agreement">
-                <div class="demo-icon">👍</div>
-                <div class="demo-title">Souhlasíte s tím?</div>
-                <div class="demo-description">
-                    Rychlé hlasování o návrzích a rozhodnutích. Ideální pro týmové porady a strategické meetingy.
-                </div>
-                <a href="index.html?config=agreement" class="demo-button" target="_blank">Vyzkoušet demo</a>
-                <a href="zobraz-kod.html?config=agreement" class="demo-button demo-button-secondary" target="_blank">Zobrazit prezentaci</a>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>
-                Pro vlastní nasazení navštivte <a href="https://github.com/melioro-systems/event-echo" target="_blank">GitHub</a> |
-                Vytvořilo <a href="https://melioro.cz" target="_blank">MELIORO Systems</a> |
-                <a href="https://eventecho.cz" target="_blank">eventecho.cz</a>
-            </p>
         </div>
     </div>
 </body>
