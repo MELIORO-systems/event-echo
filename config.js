@@ -35,6 +35,40 @@ const config = {
             scanMeText: "Scan the code and vote!",
 
             questionSets: {
+                mood: {
+                    appTitle: "Mood Meter", 
+                    appSubtitle: "Help us track the current mood!",
+                    buttonText: "How are you feeling?", 
+                    modalTitle: "How are you feeling right now?",
+                    options: ["Terrible", "Bad", "Neutral", "Good", "Great"],
+                    responses: [
+                        { text: "We're sorry to hear that. Maybe some jokes will cheer you up?", link: { text: "Show me jokes", url: "https://www.rd.com/list/funniest-jokes-of-all-time/" } },
+                        { text: "Hope things get better soon!", link: null },
+                        { text: "Thanks for your feedback.", link: null },
+                        { text: "Glad to hear that!", link: null },
+                        { text: "Awesome! Keep up the great mood.", link: null }
+                    ],
+                    statsProjectTotal: "Votes in this project:",
+                    statsProjectBreakdown: "Mood distribution:",
+                    statsGlobalBreakdown: "Global Mood Distribution:"
+                },
+                understanding: {
+                    appTitle: "Understanding Check", 
+                    appSubtitle: "Let us know how well you understand the topic.",
+                    buttonText: "How well do you understand?", 
+                    modalTitle: "How well do you understand the topic?",
+                    options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
+                    responses: [
+                        { text: "No worries! Don't hesitate to ask questions.", link: null },
+                        { text: "Okay, we'll try to clarify the main points.", link: null },
+                        { text: "Great, glad you're on board.", link: null },
+                        { text: "Excellent!", link: null },
+                        { text: "Perfect! You're a star.", link: null }
+                    ],
+                    statsProjectTotal: "Responses:",
+                    statsProjectBreakdown: "Understanding level:",
+                    statsGlobalBreakdown: "Global Understanding Level:"
+                },
                 preference: {
                     appTitle: "Event Echo - Feedback", 
                     appSubtitle: "How do you like our live feedback collection app?",
@@ -50,52 +84,24 @@ const config = {
                     ],
                     statsProjectTotal: "App ratings:",
                     statsProjectBreakdown: "Rating distribution:",
-                    statsGlobalBreakdown: "Global App Ratings:"
-                },
-                mood: {
-                    appTitle: "Not Available", appSubtitle: "Please use the main app for mood tracking",
-                    buttonText: "Not Available", modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
-                    responses: [
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null }
-                    ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
-                },
-                understanding: {
-                    appTitle: "Not Available", appSubtitle: "Please use the main app for understanding check",
-                    buttonText: "Not Available", modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
-                    responses: [
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null }
-                    ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsGlobalBreakdown: "Global Preference Distribution:"
                 },
                 agreement: {
-                    appTitle: "Not Available", appSubtitle: "Please use the main app for agreement voting",
-                    buttonText: "Not Available", modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Agreement Vote", 
+                    appSubtitle: "Please share your level of agreement with the proposal.",
+                    buttonText: "Do you agree?", 
+                    modalTitle: "What is your level of agreement?",
+                    options: ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
                     responses: [
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null },
-                        { text: "This feature is not available in this configuration", link: null }
+                        { text: "Understood, thank you for your perspective.", link: null },
+                        { text: "Thank you for sharing your concerns.", link: null },
+                        { text: "Thank you for your input.", link: null },
+                        { text: "Great, glad we are on the same page.", link: null },
+                        { text: "Excellent! Thank you for your strong support.", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Votes:",
+                    statsProjectBreakdown: "Agreement distribution:",
+                    statsGlobalBreakdown: "Global Agreement Distribution:"
                 }
             }
         },
@@ -114,6 +120,40 @@ const config = {
             scanMeText: "Naskenujte kód a hlasujte!",
 
             questionSets: {
+                mood: {
+                    appTitle: "Měřič nálady", 
+                    appSubtitle: "Pomozte nám sledovat aktuální náladu!",
+                    buttonText: "Jak se teď cítíš?", 
+                    modalTitle: "Jak se teď cítíš?",
+                    options: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"],
+                    responses: [
+                        { text: "To nás mrzí. Třeba vám zvedne náladu pár vtipů?", link: { text: "Ukaž vtipy", url: "https://www.vtipnicek.cz/nejlepsi-vtipy" } },
+                        { text: "Snad bude brzy lépe!", link: null },
+                        { text: "Děkujeme za zpětnou vazbu.", link: null },
+                        { text: "To rádi slyšíme!", link: null },
+                        { text: "Paráda! Udržte si skvělou náladu.", link: null }
+                    ],
+                    statsProjectTotal: "Hlasů v tomto projektu:",
+                    statsProjectBreakdown: "Nálady v tomto projektu:",
+                    statsGlobalBreakdown: "Globální rozložení nálad:"
+                },
+                understanding: {
+                    appTitle: "Kontrola porozumění", 
+                    appSubtitle: "Dejte nám vědět, jak dobře tématu rozumíte.",
+                    buttonText: "Jak tomu rozumíte?", 
+                    modalTitle: "Jak dobře rozumíte tématu?",
+                    options: ["Vůbec", "Trochu", "Dobře", "Většinou", "Perfektně"],
+                    responses: [
+                        { text: "Žádný strach! Neváhejte se ptát.", link: null },
+                        { text: "Dobře, zkusíme si hlavní body ujasnit.", link: null },
+                        { text: "Výborně, jsme rádi, že jste v obraze.", link: null },
+                        { text: "Excelentní!", link: null },
+                        { text: "Perfektní! Jste hvězda.", link: null }
+                    ],
+                    statsProjectTotal: "Odpovědí:",
+                    statsProjectBreakdown: "Úroveň porozumění:",
+                    statsGlobalBreakdown: "Globální úroveň porozumění:"
+                },
                 preference: {
                     appTitle: "Event Echo - Zpětná vazba", 
                     appSubtitle: "Jak se vám líbí naše aplikace pro sběr zpětné vazby?",
@@ -129,52 +169,24 @@ const config = {
                     ],
                     statsProjectTotal: "Hodnocení aplikace:",
                     statsProjectBreakdown: "Rozložení hodnocení:",
-                    statsGlobalBreakdown: "Globální hodnocení aplikace:"
-                },
-                mood: {
-                    appTitle: "Není dostupné", appSubtitle: "Pro měření nálady použijte hlavní aplikaci",
-                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
-                    responses: [
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
-                    ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
-                },
-                understanding: {
-                    appTitle: "Není dostupné", appSubtitle: "Pro kontrolu porozumění použijte hlavní aplikaci",
-                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
-                    responses: [
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
-                    ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsGlobalBreakdown: "Globální rozložení líbivosti:"
                 },
                 agreement: {
-                    appTitle: "Není dostupné", appSubtitle: "Pro hlasování o souhlasu použijte hlavní aplikaci",
-                    buttonText: "Není dostupné", modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Hlasování o souhlasu", 
+                    appSubtitle: "Prosím, vyjádřete míru svého souhlasu s návrhem.",
+                    buttonText: "Souhlasíte?", 
+                    modalTitle: "Jaká je vaše míra souhlasu?",
+                    options: ["Zásadně nesouhlasím", "Nesouhlasím", "Neutrální", "Souhlasím", "Zcela souhlasím"],
                     responses: [
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null },
-                        { text: "Tato funkce není v této konfiguraci dostupná", link: null }
+                        { text: "Rozumíme, děkujeme za vaši perspektivu.", link: null },
+                        { text: "Děkujeme, že jste sdílel(a) své obavy.", link: null },
+                        { text: "Děkujeme za váš názor.", link: null },
+                        { text: "Skvělé, jsme rádi, že se shodneme.", link: null },
+                        { text: "Excelentní! Děkujeme za vaši silnou podporu.", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Hlasů:",
+                    statsProjectBreakdown: "Rozložení souhlasu:",
+                    statsGlobalBreakdown: "Globální rozložení souhlasu:"
                 }
             }
         }
