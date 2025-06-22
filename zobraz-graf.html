@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-config-key="pageTitle">Časový graf hlasování</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23ff006e'/><stop offset='100%' style='stop-color:%238338ec'/></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23g)'/><text x='50' y='50' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' dy='12' fill='white'>?</text></svg>">
+    <link rel="stylesheet" href="zobraz-graf.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Dynamické načítání konfigurace (stejné jako v index.html) -->
+    <script>
+        // Získat parametr config z URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const configName = urlParams.get('config');
+        
+        // Whitelist povolených konfiguračních souborů
+        const allowedConfigs = ['mood', 'understanding', 'preference', 'agreement', 'demo'];
+        
+        // Určit který config soubor načíst
+        let configFile = 'config.js'; // výchozí
+        
+        if (configName && allowedConfigs.includes(configName)) {
+            configFile = `config-${configName}.js`;
+            console.log(`Loading custom config: ${configFile}`);
+        } else if (configName) {
+            console.warn(`Invalid config parameter: ${configName}. Using default config.`);
+        }
+        
+        // Dynamicky vytvořit script tag pro config
+        document.write('<script src="' + configFile + '"><\/script>');
+    </script>
+    
+    <script src="zobraz-graf.js" defer></script>
+</head>
+<body>
+    <div class="graph-container">
+        <div class="header-section">
+            <h1 data-config-key="appTitle"></h1>
+            <p data-config-key="appSubtitle"></p>
+            <div class="time-info">
+                <span id="data-range">Načítání dat...</span>
+            </div>
+        </div>
+        
+        <div class="chart-section">
+            <div class="chart-wrapper">
+                <canvas id="timeChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stat-card">
+                <h3>Celkem hlasů</h3>
+                <div id="total-votes" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Průměrná hodnota</h3>
+                <div id="average-score" class="stat-value">0.0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Nejčastější volba</h3>
+                <div id="most-common" class="stat-value">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Časové rozpětí</h3>
+                <div id="time-span" class="stat-value">-</div>
+            </div>
+        </div>
+        
+        <div class="controls-section">
+            <div class="control-group">
+                <label for="time-interval">Časový interval:</label>
+                <select id="time-interval">
+                    <option value="5">5 minut</option>
+                    <option value="15" selected>15 minut</option>
+                    <option value="30">30 minut</option>
+                    <option value="60">1 hodina</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="chart-type">Typ grafu:</label>
+                <select id="chart-type">
+                    <option value="line" selected>Čárový</option>
+                    <option value="bar">Sloupcový</option>
+                    <option value="area">Plošný</option>
+                </select>
+            </div>
+            <button id="refresh-btn" class="refresh-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Obnovit data
+            </button>
+        </div>
+    </div>
+</body>
+</html>
