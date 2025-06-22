@@ -26,24 +26,6 @@ const config = {
             scanMeText: "Scan to check your understanding!",
 
             questionSets: {
-                understanding: {
-                    appTitle: "Excel Advanced - Training", 
-                    appSubtitle: "Make sure you don't miss anything",
-                    buttonText: "How am I doing?", 
-                    modalTitle: "How well do you understand the material?",
-                    options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
-                    responses: [
-                        { text: "No worries! Break in 10 minutes - ask the instructor.", link: null },
-                        { text: "Hang in there, it will gradually make sense. Ask questions!", link: null },
-                        { text: "Excellent! You're on the right track.", link: null },
-                        { text: "Great! You're almost an Excel guru!", link: null },
-                        { text: "Excellent! You're ready for practice! 💪", link: null }
-                    ],
-                    statsProjectTotal: "Training responses:",
-                    statsProjectBreakdown: "Understanding levels:",
-                    statsGlobalBreakdown: "Training Understanding Check:"
-                },
-                // Placeholder pro ostatní typy
                 mood: {
                     appTitle: "Mood Meter",
                     appSubtitle: "Track the current mood",
@@ -61,55 +43,89 @@ const config = {
                     statsProjectBreakdown: "Mood distribution:",
                     statsGlobalBreakdown: "Global Mood Distribution:"
                 },
-                preference: {
-                    appTitle: "Not Available in This Demo",
-                    appSubtitle: "Please use config=preference",
-                    buttonText: "Not Available",
-                    modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                understanding: {
+                    appTitle: "Excel Advanced - Training", 
+                    appSubtitle: "Make sure you don't miss anything",
+                    buttonText: "How am I doing?", 
+                    modalTitle: "How well do you understand the material?",
+                    options: ["Not at all", "A little", "Well", "Mostly", "Perfectly"],
                     responses: [
-                        { text: "Please use ?config=preference for this demo", link: null },
-                        { text: "Please use ?config=preference for this demo", link: null },
-                        { text: "Please use ?config=preference for this demo", link: null },
-                        { text: "Please use ?config=preference for this demo", link: null },
-                        { text: "Please use ?config=preference for this demo", link: null }
+                        { text: "No worries! Break in 10 minutes - ask the instructor.", link: null },
+                        { text: "Hang in there, it will gradually make sense. Ask questions!", link: null },
+                        { text: "Excellent! You're on the right track.", link: null },
+                        { text: "Great! You're almost an Excel guru!", link: null },
+                        { text: "Excellent! You're ready for practice! 💪", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Training responses:",
+                    statsProjectBreakdown: "Understanding levels:",
+                    statsGlobalBreakdown: "Global Understanding Level:"
+                },
+                preference: {
+                    appTitle: "Preference Poll",
+                    appSubtitle: "Rate your preference",
+                    buttonText: "How much do you like this?",
+                    modalTitle: "How much do you like this?",
+                    options: ["Don't like it", "It's okay", "It's good", "I like it", "I love it"],
+                    responses: [
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null }
+                    ],
+                    statsProjectTotal: "Preference votes:",
+                    statsProjectBreakdown: "Preference distribution:",
+                    statsGlobalBreakdown: "Global Preference Distribution:"
                 },
                 agreement: {
-                    appTitle: "Not Available in This Demo",
-                    appSubtitle: "Please use config=agreement",
-                    buttonText: "Not Available",
-                    modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Agreement Vote",
+                    appSubtitle: "Share your agreement level",
+                    buttonText: "Do you agree?",
+                    modalTitle: "What is your level of agreement?",
+                    options: ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
                     responses: [
-                        { text: "Please use ?config=agreement for this demo", link: null },
-                        { text: "Please use ?config=agreement for this demo", link: null },
-                        { text: "Please use ?config=agreement for this demo", link: null },
-                        { text: "Please use ?config=agreement for this demo", link: null },
-                        { text: "Please use ?config=agreement for this demo", link: null }
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Agreement votes:",
+                    statsProjectBreakdown: "Agreement distribution:",
+                    statsGlobalBreakdown: "Global Agreement Distribution:"
                 }
             }
         },
         cs: { 
-            pageTitle: "Demo Kontrola porozumění - Event Echo", 
+            pageTitle: "Excel pro pokročilé - Školení", 
             settingsTitle: "Nastavení & Globální statistiky",
-            thankYouMessage: "Děkujeme za vyzkoušení dema!", 
+            thankYouMessage: "Děkujeme za zpětnou vazbu!", 
             alreadyVotedMessage: "Demo limit: Hlasovat můžete jednou za hodinu.",
             statsGlobalTitle: "Globální statistiky (Demo)", 
             statsGlobalTotal: "Celkem demo hlasů:", 
             statsGlobalToday: "Demo hlasů dnes:", 
             statsGlobalLastWeek: "Demo hlasů (7 dní):",
             gdprAlertText: "Toto je demo. Žádné osobní údaje se neukládají. 😊",
-            scanMeText: "Naskenujte pro vyzkoušení!",
+            scanMeText: "Naskenujte pro kontrolu porozumění!",
 
             questionSets: {
+                mood: {
+                    appTitle: "Měřič nálady",
+                    appSubtitle: "Sledujte aktuální náladu",
+                    buttonText: "Jak se cítíte?",
+                    modalTitle: "Jak se cítíte?",
+                    options: ["Hrozně", "Špatně", "Neutrálně", "Dobře", "Skvěle"],
+                    responses: [
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null }
+                    ],
+                    statsProjectTotal: "Hlasy nálady:",
+                    statsProjectBreakdown: "Rozložení nálady:",
+                    statsGlobalBreakdown: "Globální rozložení nálad:"
+                },
                 understanding: {
                     appTitle: "Excel pro pokročilé - Školení", 
                     appSubtitle: "Ujistěte se, že vám nic neuniklo",
@@ -125,65 +141,47 @@ const config = {
                     ],
                     statsProjectTotal: "Odpovědi ze školení:",
                     statsProjectBreakdown: "Úrovně porozumění:",
-                    statsGlobalBreakdown: "Kontrola porozumění školení:"
-                },
-                // Placeholder pro ostatní typy
-                mood: {
-                    appTitle: "Není dostupné v tomto demu",
-                    appSubtitle: "Použijte config=mood",
-                    buttonText: "Není dostupné",
-                    modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
-                    responses: [
-                        { text: "Použijte ?config=mood pro toto demo", link: null },
-                        { text: "Použijte ?config=mood pro toto demo", link: null },
-                        { text: "Použijte ?config=mood pro toto demo", link: null },
-                        { text: "Použijte ?config=mood pro toto demo", link: null },
-                        { text: "Použijte ?config=mood pro toto demo", link: null }
-                    ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsGlobalBreakdown: "Globální úroveň porozumění:"
                 },
                 preference: {
-                    appTitle: "Není dostupné v tomto demu",
-                    appSubtitle: "Použijte config=preference",
-                    buttonText: "Není dostupné",
-                    modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Průzkum líbivosti",
+                    appSubtitle: "Ohodnoťte svou preferenci",
+                    buttonText: "Jak se vám to líbí?",
+                    modalTitle: "Jak moc se vám to líbí?",
+                    options: ["Vůbec ne", "Ujde to", "Je to dobré", "Líbí se mi to", "Je to super"],
                     responses: [
-                        { text: "Použijte ?config=preference pro toto demo", link: null },
-                        { text: "Použijte ?config=preference pro toto demo", link: null },
-                        { text: "Použijte ?config=preference pro toto demo", link: null },
-                        { text: "Použijte ?config=preference pro toto demo", link: null },
-                        { text: "Použijte ?config=preference pro toto demo", link: null }
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Hlasy líbivosti:",
+                    statsProjectBreakdown: "Rozložení líbivosti:",
+                    statsGlobalBreakdown: "Globální rozložení líbivosti:"
                 },
                 agreement: {
-                    appTitle: "Není dostupné v tomto demu",
-                    appSubtitle: "Použijte config=agreement",
-                    buttonText: "Není dostupné",
-                    modalTitle: "Není dostupné",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Hlasování o souhlasu",
+                    appSubtitle: "Vyjádřete míru souhlasu",
+                    buttonText: "Souhlasíte?",
+                    modalTitle: "Jaká je vaše míra souhlasu?",
+                    options: ["Zásadně nesouhlasím", "Nesouhlasím", "Neutrální", "Souhlasím", "Zcela souhlasím"],
                     responses: [
-                        { text: "Použijte ?config=agreement pro toto demo", link: null },
-                        { text: "Použijte ?config=agreement pro toto demo", link: null },
-                        { text: "Použijte ?config=agreement pro toto demo", link: null },
-                        { text: "Použijte ?config=agreement pro toto demo", link: null },
-                        { text: "Použijte ?config=agreement pro toto demo", link: null }
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null },
+                        { text: "Tato funkce není v této demo konfiguraci aktivní", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Hlasy souhlasu:",
+                    statsProjectBreakdown: "Rozložení souhlasu:",
+                    statsGlobalBreakdown: "Globální rozložení souhlasu:"
                 }
             }
         }
     },
     
-    // Demo Firebase konfigurace - použijte vlastní pro produkci!
+    // Demo Firebase konfigurace
     firebaseConfig: {
         apiKey: "AIzaSyBZVkwEynmCEFaxBv2b2B9FSqGYu4OLjUY",
         authDomain: "mereni-nalady-web.firebaseapp.com",
