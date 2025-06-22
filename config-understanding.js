@@ -45,21 +45,21 @@ const config = {
                 },
                 // Placeholder pro ostatní typy
                 mood: {
-                    appTitle: "Not Available in This Demo",
-                    appSubtitle: "Please use config=mood",
-                    buttonText: "Not Available",
-                    modalTitle: "Not Available",
-                    options: ["N/A", "N/A", "N/A", "N/A", "N/A"],
+                    appTitle: "Mood Meter",
+                    appSubtitle: "Track the current mood",
+                    buttonText: "How are you feeling?",
+                    modalTitle: "How are you feeling?",
+                    options: ["Terrible", "Bad", "Neutral", "Good", "Great"],
                     responses: [
-                        { text: "Please use ?config=mood for this demo", link: null },
-                        { text: "Please use ?config=mood for this demo", link: null },
-                        { text: "Please use ?config=mood for this demo", link: null },
-                        { text: "Please use ?config=mood for this demo", link: null },
-                        { text: "Please use ?config=mood for this demo", link: null }
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null },
+                        { text: "This feature is not active in this demo configuration", link: null }
                     ],
-                    statsProjectTotal: "N/A",
-                    statsProjectBreakdown: "N/A",
-                    statsGlobalBreakdown: "N/A"
+                    statsProjectTotal: "Mood votes:",
+                    statsProjectBreakdown: "Mood distribution:",
+                    statsGlobalBreakdown: "Global Mood Distribution:"
                 },
                 preference: {
                     appTitle: "Not Available in This Demo",
