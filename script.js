@@ -326,6 +326,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
+
+        const initFooterLinks = () => {
+        // Získat aktuální config parametr z URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const configParam = urlParams.get('config');
+        
+        // Najít odkazy na prezentaci a graf
+        const presentationLink = document.getElementById('presentation-link');
+        const graphLink = document.getElementById('graph-link');
+        
+        // Pokud existuje config parametr, přidat ho k odkazům
+        if (configParam) {
+            if (presentationLink) {
+                presentationLink.href = `zobraz-kod.html?config=${configParam}`;
+            }
+            if (graphLink) {
+                graphLink.href = `zobraz-graf.html?config=${configParam}`;
+            }
+        }
+    };
     
     const initBackgroundImage = () => {
         if (config.backgroundImage && config.backgroundImage.filename) {
@@ -507,6 +527,7 @@ const initThemes = () => {
     initThemes();
     initSettingsToggle();
     initGdprLink();
+    initFooterLinks();  // <-- PŘIDAT TENTO ŘÁDEK
     initBackgroundImage();
     console.groupEnd();
     
