@@ -342,21 +342,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMoodModal = () => moodModal.classList.remove('visible');
     const closeResponseModal = () => responseModal.classList.remove('visible');
     
-    const initThemes = () => {
-        const savedTheme = localStorage.getItem('moodTrackerTheme') || 'default';
-        console.log(`🎨 Theme initialization: ${savedTheme}`);
-        document.body.className = `theme-${savedTheme}`;
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === savedTheme);
-            btn.addEventListener('click', () => {
-                const themeName = btn.dataset.theme;
-                console.log(`🎨 Theme changed to: ${themeName}`);
-                document.body.className = `theme-${themeName}`;
-                localStorage.setItem('moodTrackerTheme', themeName);
-                document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === themeName));
-            });
+const initThemes = () => {
+    // Nejdřív zkontroluj, jestli config definuje defaultní téma
+    const configTheme = config.defaultTheme;
+    // Pak zkus načíst uložené téma
+    const savedTheme = localStorage.getItem('moodTrackerTheme');
+    // Použij: uložené > config > default
+    const themeToUse = savedTheme || configTheme || 'default';
+    
+    console.log(`🎨 Theme initialization: ${themeToUse}`);
+    if (configTheme && !savedTheme) {
+        console.log(`Using theme from config: ${configTheme}`);
+    }
+    
+    document.body.className = `theme-${themeToUse}`;
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === themeToUse);
+        btn.addEventListener('click', () => {
+            const themeName = btn.dataset.theme;
+            console.log(`🎨 Theme changed to: ${themeName}`);
+            document.body.className = `theme-${themeName}`;
+            localStorage.setItem('moodTrackerTheme', themeName);
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === themeName));
         });
-    };
+    });
+};
     
     const initSettingsToggle = () => {
         settingsToggleBtn.addEventListener('click', () => {
