@@ -13,7 +13,7 @@ const config = {
 
     // Nastavení obrázku na pozadí hlavní aplikace
     backgroundImage: {
-        filename: "", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
+        filename: "pozadi-event-echo.png", // např. "pozadi.jpg". Pokud je prázdné, obrázek se nezobrazí.
         recommended_width: "500px",
         recommended_height: "750px",
         recommended_format: "JPG, PNG, WEBP"
