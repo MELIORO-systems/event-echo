@@ -17,10 +17,13 @@
 10. [Přizpůsobení vzhledu](#přizpůsobení-vzhledu)
 11. [Správa více událostí](#správa-více-událostí)
 12. [Prezentační režim](#prezentační-režim)
-13. [Struktura databáze](#struktura-databáze)
-14. [Řešení problémů](#řešení-problémů)
-15. [Contributing](#contributing)
-16. [Licence](#licence)
+13. [Graf časového průběhu](#graf-časového-průběhu)
+14. [Struktura databáze](#struktura-databáze)
+15. [Použité knihovny a technologie](#použité-knihovny-a-technologie)
+16. [Důležité limity a omezení](#důležité-limity-a-omezení)
+17. [Řešení problémů](#řešení-problémů)
+18. [Contributing](#contributing)
+19. [Licence](#licence)
 
 ## Co je Event Echo?
 
@@ -47,6 +50,8 @@ Event Echo je jednoduchá webová aplikace pro okamžitý sběr zpětné vazby o
 - 👍 Souhlas (Souhlasíte s návrhem?)
 
 ✅ **Real-time statistiky** - výsledky se aktualizují okamžitě bez obnovování stránky
+
+✅ **Časový graf hlasování** - vizualizace průběhu hlasování v čase s Chart.js
 
 ✅ **Podpora více projektů** - jedna databáze pro neomezený počet událostí
 
@@ -192,7 +197,12 @@ event-echo/
 ├── zobraz-kod.css      # Styly prezentačního režimu
 ├── zobraz-kod.js       # Logika prezentačního režimu
 │
+├── zobraz-graf.html    # Graf časového průběhu hlasování
+├── zobraz-graf.css     # Styly grafu
+├── zobraz-graf.js      # Logika grafu
+│
 ├── config.js           # ⚙️ HLAVNÍ KONFIGURAČNÍ SOUBOR
+├── readme-config.md    # Detailní dokumentace konfigurace
 ├── LICENSE             # MIT licence
 └── README.md           # Tento soubor
 ```
@@ -220,6 +230,10 @@ activeQuestionSet: 'mood', // Možnosti:
                           // 'understanding' - Jak rozumíte?
                           // 'preference' - Jak se vám to líbí?
                           // 'agreement' - Souhlasíte?
+
+// Výchozí barevný motiv (volitelné)
+defaultTheme: 'default',  // Možnosti: 'default', 'dark', 'forest', 'ocean', 'sunset'
+                         // Pokud není nastaveno, použije se 'default'
 ```
 
 ### Nastavení pozadí
@@ -247,6 +261,8 @@ translations: {
     }
 }
 ```
+
+📘 **Pro kompletní dokumentaci všech možností konfigurace viz [readme-config.md](readme-config.md)**
 
 ## Typy otázek
 
@@ -304,6 +320,7 @@ Aplikace obsahuje 5 předdefinovaných motivů:
 Pro pokročilé úpravy editujte:
 - `style.css` - vzhled hlavní aplikace
 - `zobraz-kod.css` - vzhled prezentačního režimu
+- `zobraz-graf.css` - vzhled grafu
 
 ## Správa více událostí
 
@@ -373,6 +390,37 @@ Speciální stránka (`zobraz-kod.html`) pro promítání na velkoplošnou obraz
 2. Použijte fullscreen režim (F11)
 3. Promítněte na plátno
 
+### Použití s URL parametrem
+
+Stejně jako hlavní aplikace:
+```
+https://vase-domena.cz/zobraz-kod.html?config=workshop
+```
+
+## 📊 Graf časového průběhu
+
+### Co je graf hlasování?
+
+Speciální stránka (`zobraz-graf.html`) pro analýzu hlasování v čase:
+- Vizualizace průběhu hlasování pomocí grafů
+- Možnost změnit časový interval (5, 15, 30, 60 minut)
+- 3 typy zobrazení: čárový, sloupcový, plošný graf
+- Automatická aktualizace každých 30 sekund
+- Statistiky: celkový počet hlasů, průměr, nejčastější volba
+
+### Jak používat
+
+1. Otevřete `zobraz-graf.html`
+2. Graf se automaticky načte a aktualizuje
+3. Můžete měnit typ grafu a časový interval
+
+### Použití s URL parametrem
+
+Stejně jako hlavní aplikace, i graf podporuje různé konfigurace:
+```
+https://vase-domena.cz/zobraz-graf.html?config=workshop
+```
+
 ## Struktura databáze
 
 ### Firebase Firestore struktura
@@ -392,6 +440,46 @@ moodStats (kolekce)
             timestamp: Timestamp
         }, ...]
 ```
+
+## 📚 Použité knihovny a technologie
+
+### Hlavní technologie
+- **Vanilla JavaScript** - Žádný framework, čistý JS pro maximální rychlost
+- **Firebase Firestore** - Real-time NoSQL databáze
+- **CSS3** - Moderní styly s CSS proměnnými pro témata
+
+### Externí knihovny
+- **Firebase SDK** v8.10.1 - Pro komunikaci s databází
+- **Chart.js** v4.4.0 - Pro vykreslování grafů (`zobraz-graf.html`)
+- **QRCode.js** v1.0.0 - Pro generování QR kódů (`zobraz-kod.html`)
+
+### CDN odkazy
+Všechny knihovny jsou načítány z CDN pro rychlé načítání:
+- Firebase: `https://www.gstatic.com/firebasejs/8.10.1/`
+- Chart.js: `https://cdn.jsdelivr.net/npm/chart.js@4.4.0/`
+- QRCode.js: `https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/`
+
+### Kompatibilita
+- **Prohlížeče**: Chrome 60+, Firefox 60+, Safari 12+, Edge 79+
+- **Mobilní zařízení**: iOS Safari 12+, Chrome Android 60+
+- **JavaScript**: ES6+ (použití arrow funkcí, template literals, const/let)
+
+## ⚠️ Důležité limity a omezení
+
+### Demo databáze
+- **Čtení**: Max 50,000 čtení/den (stačí pro ~1000 aktivních uživatelů)
+- **Zápis**: Max 20,000 zápisů/den
+- **Testovací režim**: Platí pouze 30 dní, pak je nutné nastavit bezpečnostní pravidla
+
+### Technické limity
+- **Historie hlasování**: Automaticky se trimuje na posledních 1000 záznamů
+- **LocalStorage**: Hlasování se ukládá v prohlížeči (při vymazání dat se resetuje)
+- **Velikost dat**: Firestore dokument má limit 1MB
+
+### Bezpečnost
+- **Whitelist konfiguračních souborů**: Pouze předem definované konfigurace jsou povoleny
+- **Žádné osobní údaje**: Aplikace nesbírá ani neukládá žádné identifikační informace
+- **HTTPS doporučeno**: Pro produkční nasazení vždy používejte HTTPS
 
 ## Řešení problémů
 
