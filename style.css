@@ -290,7 +290,7 @@ svg {
 /* Rozložení statistik */
 .stat-value.breakdown {
     font-size: 1rem;
-    gap: 25px; // puvodně 15
+    gap: 25px; /* puvodně 15 prostor mezi jednotlivými ikonami */
     flex-wrap: wrap;
     justify-content: center;
     padding: 0.5rem 0;
@@ -301,8 +301,8 @@ svg {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    padding: 0 8px; // puvodně 5
-    min-width: 50px; // puvodne 45
+    padding: 0 8px; /* puvodně 5 */
+    min-width: 50px; /* puvodne 45 */
 }
 
 .stat-value.breakdown > div > span {
